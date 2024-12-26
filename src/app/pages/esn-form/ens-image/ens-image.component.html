@@ -1,0 +1,16 @@
+<div class="w-1/3">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
+        <nz-form-control>
+            <nz-upload nzType="drag" [nzMultiple]="true" nzAccept="image/*" >
+                <p class="ant-upload-text">Click or drag file to this area to upload</p>
+                <p class="ant-upload-hint">
+                    Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+                    band files.
+                </p>
+            </nz-upload>
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button nzType="primary"  class="mt-4 w-full">Valid</button>
+
+</div>

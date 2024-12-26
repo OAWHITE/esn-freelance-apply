@@ -1,0 +1,47 @@
+<div class="p-10">
+  <div class="flex justify-between">
+    <h1 class="text-2xl text-cyan-600 font-bold">List Ens </h1>
+    <a class="bg-cyan-500 p-3 rounded-md " routerLink="/esn">
+      Add New Esn
+    </a>
+  </div>
+  <div class="mt-5">
+
+
+    <nz-table #middleTable nzSize="middle" [nzData]="ensData">
+      <thead>
+      <tr>
+        <th>Name Ens</th>
+        <th>Name Contact</th>
+        <th>Post</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (esn of middleTable.data; track esn) {
+          <tr>
+            <td>{{ esn.nameEns }}</td>
+            <td>{{ esn.nameContact }}</td>
+            <td>{{ esn.poste }}</td>
+            <td>{{ esn.email }}</td>
+            <td>{{ esn.phone }}</td>
+            <td>
+              
+            </td>
+            <td>
+              <div class="flex gap-2">
+                <button class="p-2 w-16 rounded-sm bg-red-500" (click)="deleteEsn(esn.id)">Delete</button>
+                <button class="p-2 w-16 rounded-sm bg-green-500" [routerLink]="'/esn/'+esn.id+'/update'">Edit</button>
+<!--                )="editEsn(esn.id)"-->
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </nz-table>
+  </div>
+
+</div>
