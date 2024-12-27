@@ -2,15 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {EsnService} from "../../shared/services/esn.service";
 import {EnsResponse} from "../../shared/model/EnsResponse";
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzModalModule, NzModalService} from "ng-zorro-antd/modal";
 import {Router, RouterLink} from "@angular/router";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-list-esn',
   standalone: true,
-  imports: [NzTableModule, NzModalModule, RouterLink],
+  imports: [NzTableModule, NzModalModule, RouterLink, NgIf],
   templateUrl: './list-esn.component.html',
   styleUrl: './list-esn.component.css'
 })
@@ -21,7 +22,8 @@ export class ListEsnComponent implements OnInit {
     private ensservice: EsnService,
     private nzNotif: NzNotificationService,
     private router: Router,
-    private modalService: NzModalService) {
+    private modalService: NzModalService,
+    private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class ListEsnComponent implements OnInit {
     this.ensservice.getEns().subscribe({
       next: (data) => {
         this.ensData = data;
+        console.log(this.ensData)
       },
       error: (err) => {
         console.log(err)
@@ -63,7 +66,9 @@ export class ListEsnComponent implements OnInit {
     });
   }
 
-  getImgUrl(blob:Blob):string{
-    return URL.createObjectURL(blob);
-  }
+  // getImgUrl(blob: Blob | undefined ): SafeUrl {
+  //   return URL.createObjectURL(blob as Blob);
+  //
+  // }
+
 }

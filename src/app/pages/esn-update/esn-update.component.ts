@@ -9,6 +9,8 @@ import {NzFormItemComponent, NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzButtonComponent} from "ng-zorro-antd/button";
+import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
+import {EsnRequest} from "../../shared/model/EsnRequest";
 
 
 @Component({
@@ -71,6 +73,29 @@ export class EsnUpdateComponent implements OnInit {
   }
 
   handleUpdateEsn() {
+    if(this.formEsn.valid && this.imageFile ){
+      const esnRequest:EsnRequest = {
+        nameEns:this.formEsn.get("name")?.value,
+        nameContact:this.formEsn.get("contact")?.value,
+        poste:this.formEsn.get("poste")?.value,
+        email:this.formEsn.get("email")?.value,
+        phone:this.formEsn.get("phone")?.value,
+      }
 
+      this.esnService.updateEsn(this.esnResponse?.id as number,this.imageFile,esnRequest).subscribe({
+        next: (data) => {
+          console.log("updated successffuly")
+          this.nzNotif.success('Success', 'Esn updated successfully');
+
+        },error:err =>
+        {
+          console.error("an error occured ", err)
+          this.nzNotif.error('Error', 'An error occurred while updating the Esn data');
+
+        }
+      })
+    }
   }
 }
+
+

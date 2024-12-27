@@ -25,6 +25,8 @@ export class FreelanceFormComponent implements OnInit {
   imageFile? :File;
   freelanceForm!:FormGroup;
   showImageError:boolean= false;
+  resumeFile!:File;
+
   constructor(
     private freelanceService:FreelanceService,
     private fb:FormBuilder,
@@ -114,5 +116,13 @@ export class FreelanceFormComponent implements OnInit {
       }
     })
     inpt.click();
+  }
+
+
+  importResume(event:Event){
+    let target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.resumeFile = target.files[0];
+    }
   }
 }

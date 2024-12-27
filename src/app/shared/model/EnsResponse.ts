@@ -9,4 +9,5 @@ export interface EnsResponse {
 
    phone:string
    image?:Blob
+  imageType?:string
 }

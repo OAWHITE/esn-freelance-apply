@@ -8,6 +8,7 @@ import {ListFreelanceComponent} from "./pages/list-freelance/list-freelance.comp
 import {EsnUpdateComponent} from "./pages/esn-update/esn-update.component";
 import {FreelanceUpdateComponent} from "./pages/freelance-update/freelance-update.component";
 import {esnUpdateResolver} from "./core/resolvers/esn-update.resolver";
+import {freelanceUpdateResolver} from "./core/resolvers/freelance-update.resolver";
 
 export const routes: Routes = [
     {
@@ -21,10 +22,6 @@ export const routes: Routes = [
     {
         path:'esn',
         component:EsnFormComponent
-    },
-    {
-        path:'esn/image/:id',
-        component:EnsImageComponent
     },
   {
     path:'esn/list',
@@ -43,6 +40,9 @@ export const routes: Routes = [
   },
   {
     path:'freelance/:id/update',
-    component:FreelanceUpdateComponent
+    component:FreelanceUpdateComponent,
+    resolve:{
+      freelanceResponse: freelanceUpdateResolver
+    }
   }
 ];

@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-      @for (freelance of middleTable.data; track freelance) {
+      @for (freelance of middleTable.data; track $index) {
         <tr>
           <td>{{ freelance.id }}</td>
           <td>{{ freelance.name }}</td>
@@ -29,20 +29,19 @@
           <td>{{ freelance.email }}</td>
           <td>{{ freelance.phone }}</td>
           <td>
-            <img
-              [src]="'assets/images/freelance/' + freelance.id + '.jpg'"
-              alt="Freelance Image"
-              class="w-16 h-16 object-cover"
-            />
+            <!-- Displaying image if it exists -->
+            @if(freelance.image!=null){
+            <img  [src]="'data:image/'+freelance.imageType+';base64,'+freelance.image" alt="Freelance Image" class="h-8" />
+            }
           </td>
           <td>
             <div class="flex gap-2">
               <button class="p-2 w-16 rounded-sm bg-red-500" (click)="deleteFreelance(freelance.id)">Delete</button>
-              <button class="p-2 w-16 rounded-sm  bg-green-500" (click)="editFreelance(freelance.id)">Edit</button>
+              <button class="p-2 w-16 rounded-sm bg-green-500" (click)="editFreelance(freelance.id)">Edit</button>
             </div>
           </td>
         </tr>
       }
     </tbody>
-</nz-table>
+  </nz-table>
 </div>

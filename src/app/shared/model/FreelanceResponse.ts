@@ -7,6 +7,5 @@ export interface FreelanceResponse {
   phone:string
   image?:Blob
   resume?:Blob
-
-
+  imageType?:string
 }

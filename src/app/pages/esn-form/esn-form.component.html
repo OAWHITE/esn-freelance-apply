@@ -68,7 +68,8 @@
             <nz-form-item>
                 <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
                 <nz-form-control>
-                    <div class="w-28 h-28 {{!this.imageFile?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center" (click)="importImage()" style="background-image: url({{this.imageUrl}})">
+                    <div class="w-28 h-28 {{!this.imageFile?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center"
+                         (click)="importImage()" style="background-image: url({{this.imageUrl}})">
 
                     </div>
                 </nz-form-control>

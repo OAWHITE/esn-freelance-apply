@@ -25,6 +25,17 @@
                 </nz-form-control>
             </nz-form-item>
 
+          <nz-form-item class="flex items-center space-x-4">
+            <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">CV</nz-form-label>
+            <nz-form-control [nzSpan]="14" class="flex-1">
+              <input nz-input type="file"
+                     (change)="importResume($event)"
+                     accept="application/pdf"
+                     class="block w-full px-4 py-2 rounded-md shadow-sm "
+                     placeholder="choose your resume" />
+            </nz-form-control>
+          </nz-form-item>
+
             <!-- List des competence select -->
 
             <nz-form-item class="flex items-center space-x-4">
