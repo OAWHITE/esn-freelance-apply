@@ -9,6 +9,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {immediateProvider} from "rxjs/internal/scheduler/immediateProvider";
 
 
 @Component({
@@ -25,8 +26,11 @@ export class FreelanceUpdateComponent implements OnInit {
   imageFile?: File;
   showImageError: boolean = false;
   showResumeError: boolean = false;
+  existsImage:boolean = false;
+  existsResume:boolean=false;
   imageUrl: string = '';
   resumeFile!: File;
+
 
   constructor(private freelanceService: FreelanceService,
               private fb: FormBuilder,
@@ -41,6 +45,7 @@ export class FreelanceUpdateComponent implements OnInit {
   }
 
   fillForm(freelanceResponse: FreelanceResponse) {
+
     this.formFreelance = this.fb.group({
       name: [freelanceResponse.name, [Validators.required, Validators.minLength(3)]],
       intitule: [freelanceResponse.intitule, [Validators.required, Validators.minLength(3)]],
@@ -59,6 +64,7 @@ export class FreelanceUpdateComponent implements OnInit {
       if (file) {
         this.imageFile = file;
         this.showImageError =false;
+        this.existsImage=true;
         this.showResumeError =false;
         this.imageUrl = URL.createObjectURL(file);
       }
@@ -67,15 +73,24 @@ export class FreelanceUpdateComponent implements OnInit {
   }
 
 
-  importResume(event: Event) {
-    let target = event.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
-      this.resumeFile = target.files[0];
-    }
+  importResume() {
+    let inptElement =document.createElement("input")
+    inptElement.type = 'file';
+    inptElement.accept = 'application/pdf';
+
+    inptElement.addEventListener('change', (event) => {
+      let target = event.target as HTMLInputElement;
+
+      if (target.files && target.files.length > 0) {
+        this.resumeFile = target.files[0];
+        this.existsResume=true;
+      }
+    })
+    inptElement.click();
   }
 
   handleUpdateFreelace() {
-    if (this.formFreelance.valid && this.imageFile && this.resumeFile) {
+    if ((this.existsImage && this.existsResume && this.formFreelance.valid && this.imageFile && this.resumeFile) ||(this.existsImage && this.formFreelance.valid || this.existsResume && this.formFreelance.valid)) {
       const freelanceRequest: FreelanceRequest = {
         name: this.formFreelance.get("name")?.value,
         competences: this.formFreelance.get("competences")?.value,
@@ -84,7 +99,7 @@ export class FreelanceUpdateComponent implements OnInit {
         phone: this.formFreelance.get("phone")?.value,
       }
 
-      this.freelanceService.updateFreelance(this.freelanceResponse?.id as number, this.resumeFile, this.imageFile, freelanceRequest).subscribe({
+      this.freelanceService.updateFreelance(this.freelanceResponse?.id as number, this.resumeFile, this.imageFile as File, freelanceRequest).subscribe({
         next: (data) => {
           console.log("updated successffuly")
           this.nzNotif.success('Success', 'Freelance updated successfully');

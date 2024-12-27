@@ -17,6 +17,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 })
 export class ListEsnComponent implements OnInit {
   ensData: EnsResponse[] = []
+  imagesData: any[] = []
 
   constructor(
     private ensservice: EsnService,
@@ -34,13 +35,13 @@ export class ListEsnComponent implements OnInit {
     this.ensservice.getEns().subscribe({
       next: (data) => {
         this.ensData = data;
-        console.log(this.ensData)
       },
       error: (err) => {
         console.log(err)
       }
     })
   }
+
   deleteEsn(id: number) {
     this.modalService.confirm({
       nzTitle: 'Are you sure delete this esn?',
@@ -66,9 +67,56 @@ export class ListEsnComponent implements OnInit {
     });
   }
 
-  // getImgUrl(blob: Blob | undefined ): SafeUrl {
-  //   return URL.createObjectURL(blob as Blob);
-  //
-  // }
+  LoadImages(esnObject: EnsResponse, file: Blob | undefined) {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const result = event?.target?.result;
+      let imgObj: any = esnObject
+      imgObj.imageUrl = result;
+      this.imagesData.push(imgObj);
+    }
+
+    reader.readAsDataURL(file as Blob);
+  }
+
+
+  getImageUrl(base64Image: string): string {
+    if (base64Image.startsWith('data:image/')) {
+      // The MIME type is already present, so return the string directly.
+      return base64Image;
+    } else {
+      // Dynamically guess MIME type (not always accurate but works for common types)
+      const mimeType = this.detectMimeType(base64Image);
+      return `data:${mimeType};base64,${base64Image}`;
+    }
+  }
+
+  detectMimeType(base64String: string): string {
+    // Decode base64 string to raw binary data
+    const signature = atob(base64String.substring(0, 10)) // Get first 10 bytes
+      .split("")
+      .map(char => char.charCodeAt(0).toString(16).padStart(2, "0"))
+      .join("");
+
+    console.log(signature)
+    // Match signature with common MIME types
+    switch (true) {
+      case signature.startsWith("ffd8"):
+        console.log("jpeg")
+        return "image/jpeg";
+      case signature.startsWith("89504e47"):
+        console.log("png")
+        return "image/png";
+      case signature.startsWith("47494638"):
+        console.log("gif")
+        return "image/gif";
+      case signature.startsWith("424d"):
+        console.log("bmp")
+        return "image/bmp";
+      default:
+        return "application/octet-stream"; // Default MIME type if unknown
+    }
+  }
 
 }

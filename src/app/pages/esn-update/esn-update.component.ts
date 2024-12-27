@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute,Router} from "@angular/router";
 import {EnsResponse} from "../../shared/model/EnsResponse";
 import {EsnService} from "../../shared/services/esn.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-
 import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
 import {NzFormItemComponent, NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
@@ -23,7 +22,7 @@ import {EsnRequest} from "../../shared/model/EsnRequest";
     NzOptionComponent,
     NzFormItemComponent,
     NzInputModule,
-    NzButtonComponent,
+    NzButtonComponent
 
   ],
   templateUrl: './esn-update.component.html',
@@ -36,15 +35,17 @@ export class EsnUpdateComponent implements OnInit {
   imageUrl: string = '';
   imageFile? :File;
   showImageError:boolean = false;
+  isImageTouched:boolean = false;
   constructor(private route: ActivatedRoute,
               private esnService:EsnService,
               private fb:FormBuilder,
-              private nzNotif:NzNotificationService
+              private nzNotif:NzNotificationService,
+              private router: Router,
   ) {}
   ngOnInit() {
     this.esnResponse= this.route.snapshot.data["esnResponse"]
     this.fillForm(this.esnResponse as EnsResponse);
-    console.log()
+    console.log(this.esnResponse)
   }
 
   fillForm(esnResponse:EnsResponse){
@@ -66,14 +67,17 @@ export class EsnUpdateComponent implements OnInit {
       if (file) {
         this.imageFile = file;
         this.showImageError =false;
+        this.isImageTouched=true;
         this.imageUrl = URL.createObjectURL(file);
+
+        // console.log(this.imageUrl)
       }
     })
     inpt.click();
   }
 
   handleUpdateEsn() {
-    if(this.formEsn.valid && this.imageFile ){
+    if((this.isImageTouched && this.formEsn.valid && this.imageFile) || (!this.isImageTouched && this.formEsn.valid)){
       const esnRequest:EsnRequest = {
         nameEns:this.formEsn.get("name")?.value,
         nameContact:this.formEsn.get("contact")?.value,
@@ -81,10 +85,9 @@ export class EsnUpdateComponent implements OnInit {
         email:this.formEsn.get("email")?.value,
         phone:this.formEsn.get("phone")?.value,
       }
-
-      this.esnService.updateEsn(this.esnResponse?.id as number,this.imageFile,esnRequest).subscribe({
+      this.esnService.updateEsn(this.esnResponse?.id as number,this.imageFile as File,esnRequest).subscribe({
         next: (data) => {
-          console.log("updated successffuly")
+          this.router.navigate(["/esn/list"])
           this.nzNotif.success('Success', 'Esn updated successfully');
 
         },error:err =>

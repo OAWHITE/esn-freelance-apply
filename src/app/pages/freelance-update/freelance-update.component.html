@@ -29,11 +29,19 @@
       <nz-form-item class="flex items-center space-x-4">
         <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">CV</nz-form-label>
         <nz-form-control [nzSpan]="14" class="flex-1">
-          <input nz-input type="file"
-                 (change)="importResume($event)"
-                 accept="application/pdf"
-                 class="block w-full px-4 py-2 rounded-md shadow-sm {{showResumeError?'border border-red-500':''}} "
-                 placeholder="choose your resume"/>
+<!--          <input nz-input type="file"-->
+<!--                 (change)="importResume($event)"-->
+<!--                 accept="application/pdf"-->
+<!--                 class="block w-full px-4 py-2 rounded-md shadow-sm {{showResumeError?'border border-red-500':''}} "-->
+<!--                 placeholder="choose your resume"/>-->
+          <div class="flex items-center cursor-pointer justify-center w-full px-4 py-2 rounded-md shadow-sm {{showResumeError?'border border-red-500':'border border-gray-300'}}"
+               (click)="importResume()"
+          >
+            <p class="w-full text-center" >
+              {{this.freelanceResponse?.resume && !this.resumeFile? 'resume.pdf':this.resumeFile?this.resumeFile.name:'choose your resume ...' }}
+            </p>
+          </div>
+
         </nz-form-control>
       </nz-form-item>
 
@@ -74,8 +82,11 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
         <nz-form-control>
-          <div class="w-28 h-28 {{!this.imageFile?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center"
-               (click)="importImage()" style="background-image: url({{this.imageUrl}})">
+
+
+          <div class="w-28 h-28 {{!this.imageFile && !freelanceResponse?.image?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center"
+               (click)="importImage()" style="background-image: url({{this.imageUrl}})"
+               style="background-image: url({{freelanceResponse?.image && !this.imageFile?'data:image/'+freelanceResponse?.imageType+';base64,'+freelanceResponse?.image:this.imageUrl}})">
 
           </div>
         </nz-form-control>

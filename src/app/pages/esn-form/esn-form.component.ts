@@ -75,7 +75,6 @@ export class EsnFormComponent implements OnInit {
 
       this.esnService.addEsn(esnRequest).subscribe({
         next: (data) => {
-            console.log(data);
             this.esnService.uploadImage(data.id,this.imageFile as File).subscribe({
               next:()=>{
                 this.nzNotif.success("Information","Esn Applied Successffully")
