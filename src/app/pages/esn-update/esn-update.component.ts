@@ -37,6 +37,7 @@ export class EsnUpdateComponent implements OnInit {
   showImageError:boolean = false;
   isImageTouched:boolean = false;
   @Input() esn!: EnsResponse;
+
   constructor(private route: ActivatedRoute,
               private esnService:EsnService,
               private fb:FormBuilder,
@@ -73,35 +74,42 @@ export class EsnUpdateComponent implements OnInit {
         this.isImageTouched=true;
         this.imageUrl = URL.createObjectURL(file);
 
-        // console.log(this.imageUrl)
       }
     })
     inpt.click();
   }
 
   handleUpdateEsn() {
-    if((this.isImageTouched && this.formEsn.valid && this.imageFile) || (!this.isImageTouched && this.formEsn.valid)){
-      const esnRequest:EsnRequest = {
-        nameEns:this.formEsn.get("name")?.value,
-        nameContact:this.formEsn.get("contact")?.value,
-        poste:this.formEsn.get("poste")?.value,
-        email:this.formEsn.get("email")?.value,
-        phone:this.formEsn.get("phone")?.value,
+    if ((this.isImageTouched && this.formEsn.valid && this.imageFile) || (!this.isImageTouched && this.formEsn.valid)) {
+      const esnRequest: EsnRequest = {
+        nameEns: this.formEsn.get("name")?.value,
+        nameContact: this.formEsn.get("contact")?.value,
+        poste: this.formEsn.get("poste")?.value,
+        email: this.formEsn.get("email")?.value,
+        phone: this.formEsn.get("phone")?.value,
+      };
+
+      const esnId = this.esnResponse?.id;
+      if (esnId !== undefined) {
+        this.esnService.updateEsn(esnId, this.imageFile as File, esnRequest).subscribe({
+          next: (data) => {
+            this.router.navigate(["/esn/list"]);
+            this.nzNotif.success('Success', 'Esn updated successfully');
+
+            // this.closeTab();
+          },
+          error: (err) => {
+            console.error("An error occurred ", err);
+            this.nzNotif.error('Error', 'An error occurred while updating the Esn data');
+          }
+        });
+      } else {
+        // Handle case where esnResponse.id is undefined
+        this.nzNotif.error('Error', 'Invalid ESN id');
       }
-      this.esnService.updateEsn(this.esnResponse?.id  as number,this.imageFile as File,esnRequest).subscribe({
-        next: (data) => {
-          this.router.navigate(["/esn/list"])
-          this.nzNotif.success('Success', 'Esn updated successfully');
-
-        },error:err =>
-        {
-          console.error("an error occured ", err)
-          this.nzNotif.error('Error', 'An error occurred while updating the Esn data');
-
-        }
-      })
     }
   }
+
 }
 
 

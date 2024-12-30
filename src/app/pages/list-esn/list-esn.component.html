@@ -30,14 +30,24 @@
             <td>{{ esn.poste }}</td>
             <td>{{ esn.email }}</td>
             <td>{{ esn.phone }}</td>
-            <td>
-              <ng-container *ngIf="esn.image">
-                <img
-                  [src]="'data:image/' + esn.imageType + ';base64,' + esn.image"
-                  alt="Freelance Image"
-                  class="h-8"
-                />
-              </ng-container>
+            <td >
+<!--              <ng-container *ngIf="esn.image">-->
+<!--                <img-->
+<!--                  [src]="'data:image/' + esn.imageType + ';base64,' + esn.image"-->
+<!--                  alt="Freelance Image"-->
+<!--                  class="h-8"-->
+<!--                />-->
+          <div class="flex justify-center">
+            <img src="assets/eye.svg" alt="eye"
+                 srcset="assets/eye.svg"
+                 class="h-5 cursor-pointer"
+                 (click)="onImageClick(esn.image, esn.imageType)"
+            />
+
+          </div>
+
+
+<!--              </ng-container>-->
             </td>
             <td>
               <div class="flex gap-2">
@@ -66,7 +76,7 @@
       >
         <div>
 
-          <app-esn-update [esn]="tab.esn"></app-esn-update>
+          <app-esn-update [esn]="tab.esn" ></app-esn-update>
 
         </div>
       </nz-tab>

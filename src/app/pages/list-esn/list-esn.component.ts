@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {EsnService} from "../../shared/services/esn.service";
 import {EnsResponse} from "../../shared/model/EnsResponse";
@@ -9,12 +9,13 @@ import {Router, RouterLink} from "@angular/router";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {EsnUpdateComponent} from "../esn-update/esn-update.component";
-
+import { NzImageService } from 'ng-zorro-antd/image';
 @Component({
   selector: 'app-list-esn',
   standalone: true,
   imports: [NzTableModule, NzModalModule, RouterLink, NgIf, NzTabsModule, NgForOf, EsnUpdateComponent],
   templateUrl: './list-esn.component.html',
+  providers: [NzImageService],
   styleUrl: './list-esn.component.css'
 })
 export class ListEsnComponent implements OnInit {
@@ -22,9 +23,9 @@ export class ListEsnComponent implements OnInit {
   imagesData: any[] = []
   dynamicTabs: { esn: EnsResponse; tabIndex: number }[] = [];
   selectedTabIndex: number = 0;
+  private nzImageService = inject(NzImageService);
 
 
-  
   openEditTab(esn: EnsResponse, index: number) {
     const existingTab = this.dynamicTabs.find((tab) => tab.esn.id === esn.id);
     if (existingTab) {
@@ -40,6 +41,8 @@ export class ListEsnComponent implements OnInit {
     const tabIndex = event.index - 1;
     if (tabIndex >= 0) {
       this.dynamicTabs.splice(tabIndex, 1);
+
+      this.loadEns()
     }
   }
 
@@ -141,6 +144,15 @@ export class ListEsnComponent implements OnInit {
       default:
         return "application/octet-stream"; // Default MIME type if unknown
     }
+  }
+  onImageClick(image?: Blob, type?: string): void {
+    const images = [
+      {
+        src: 'data:image/' + type + ';base64,' + image,
+        alt: 'Preview Image'
+      }
+    ];
+    this.nzImageService.preview(images, { nzZoom: 0.5, nzRotate: 0, nzScaleStep: 0.5 });
   }
 
 }
