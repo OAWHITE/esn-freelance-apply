@@ -4,6 +4,7 @@ import {FreelanceResponse} from "../model/FreelanceResponse";
 import { FreelanceRequest } from '../model/FreelanceRequest';
 import {environment} from "../../../environments/environment.development";
 import {EnsResponse} from "../model/EnsResponse";
+import {Base64Service} from "./base64.service";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class FreelanceService {
 
   private apiUrl: string = `${environment.BACKEND_ENDPOINT}/freelance`
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private base64Service: Base64Service) {
   }
 
 
@@ -40,8 +41,16 @@ export class FreelanceService {
     return this.http.delete<void>(`${this.apiUrl}`, {params: {id: id}})
   }
 
-  updateFreelance(id: number, freelanceRequest: FreelanceRequest) {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, freelanceRequest)
+  updateFreelance(id: number,resume:File,image:File, freelanceRequest: FreelanceRequest) {
+      let formData = new FormData();
+      formData.append('image', image);
+      formData.append('resume', resume);
+      // const freelanceRequestString = JSON.stringify(freelanceRequest);
+    return this.http.put<void>(`${this.apiUrl}/${id}`, formData,{
+      params:{
+        freelanceRequest:this.base64Service.objectToBase64(freelanceRequest)
+      }
+    })
   }
 
 
