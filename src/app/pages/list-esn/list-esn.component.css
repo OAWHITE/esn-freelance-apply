@@ -1,0 +1,7 @@
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+}
+::ng-deep .ant-image-preview-img {
+  display: inline-block; //will make the image to center, tested okay when i change in console element
+}
