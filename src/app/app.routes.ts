@@ -10,6 +10,7 @@ import {FreelanceUpdateComponent} from "./pages/freelance-update/freelance-updat
 import {esnUpdateResolver} from "./core/resolvers/esn-update.resolver";
 import {LoginComponent} from "./pages/login/login.component";
 import {authGuard} from "./core/guards/auth.guard";
+import {loginCheckGuard} from "./core/guards/login-check.guard";
 
 export const routes: Routes = [
   {
@@ -53,5 +54,6 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [loginCheckGuard]
   }
 ];

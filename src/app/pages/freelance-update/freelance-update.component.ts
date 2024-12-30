@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FreelanceResponse} from "../../shared/model/FreelanceResponse";
 import {FreelanceService} from "../../shared/services/freelance.service";
 import {NzFormModule} from 'ng-zorro-antd/form';
@@ -20,6 +20,7 @@ import {immediateProvider} from "rxjs/internal/scheduler/immediateProvider";
   styleUrl: './freelance-update.component.css'
 })
 export class FreelanceUpdateComponent implements OnInit {
+  @Input() freelance!: FreelanceResponse;
   id?: number;
   freelanceResponse?: FreelanceResponse;
   formFreelance!: FormGroup;
@@ -40,8 +41,11 @@ export class FreelanceUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.freelanceResponse = this.route.snapshot.data["freelanceResponse"]
-    this.fillForm(this.freelanceResponse as FreelanceResponse);
+    if (this.freelance) {
+      this.freelanceResponse = this.freelance;
+      this.fillForm(this.freelance);
+      console.log(this.freelance);
+    }
   }
 
   fillForm(freelanceResponse: FreelanceResponse) {
