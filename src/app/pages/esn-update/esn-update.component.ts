@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit ,Input} from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import {EnsResponse} from "../../shared/model/EnsResponse";
 import {EsnService} from "../../shared/services/esn.service";
@@ -36,16 +36,19 @@ export class EsnUpdateComponent implements OnInit {
   imageFile? :File;
   showImageError:boolean = false;
   isImageTouched:boolean = false;
+  @Input() esn!: EnsResponse;
   constructor(private route: ActivatedRoute,
               private esnService:EsnService,
               private fb:FormBuilder,
               private nzNotif:NzNotificationService,
               private router: Router,
   ) {}
-  ngOnInit() {
-    this.esnResponse= this.route.snapshot.data["esnResponse"]
-    this.fillForm(this.esnResponse as EnsResponse);
-    console.log(this.esnResponse)
+  ngOnInit(): void {
+    if (this.esn) {
+      this.esnResponse = this.esn;
+      this.fillForm(this.esn);
+      console.log(this.esn);
+    }
   }
 
   fillForm(esnResponse:EnsResponse){
@@ -85,7 +88,7 @@ export class EsnUpdateComponent implements OnInit {
         email:this.formEsn.get("email")?.value,
         phone:this.formEsn.get("phone")?.value,
       }
-      this.esnService.updateEsn(this.esnResponse?.id as number,this.imageFile as File,esnRequest).subscribe({
+      this.esnService.updateEsn(this.esnResponse?.id  as number,this.imageFile as File,esnRequest).subscribe({
         next: (data) => {
           this.router.navigate(["/esn/list"])
           this.nzNotif.success('Success', 'Esn updated successfully');

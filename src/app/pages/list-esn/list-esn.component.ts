@@ -2,22 +2,46 @@ import {Component, OnInit} from '@angular/core';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {EsnService} from "../../shared/services/esn.service";
 import {EnsResponse} from "../../shared/model/EnsResponse";
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzModalModule, NzModalService} from "ng-zorro-antd/modal";
 import {Router, RouterLink} from "@angular/router";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
+import {EsnUpdateComponent} from "../esn-update/esn-update.component";
 
 @Component({
   selector: 'app-list-esn',
   standalone: true,
-  imports: [NzTableModule, NzModalModule, RouterLink, NgIf],
+  imports: [NzTableModule, NzModalModule, RouterLink, NgIf, NzTabsModule, NgForOf, EsnUpdateComponent],
   templateUrl: './list-esn.component.html',
   styleUrl: './list-esn.component.css'
 })
 export class ListEsnComponent implements OnInit {
   ensData: EnsResponse[] = []
   imagesData: any[] = []
+  dynamicTabs: { esn: EnsResponse; tabIndex: number }[] = [];
+  selectedTabIndex: number = 0;
+
+
+  
+  openEditTab(esn: EnsResponse, index: number) {
+    const existingTab = this.dynamicTabs.find((tab) => tab.esn.id === esn.id);
+    if (existingTab) {
+      this.selectedTabIndex = this.dynamicTabs.indexOf(existingTab) + 1;
+    } else {
+
+      this.dynamicTabs.push({ esn, tabIndex: index });
+      this.selectedTabIndex = this.dynamicTabs.length;
+    }
+  }
+
+  closeTab(event: { index: number }): void {
+    const tabIndex = event.index - 1;
+    if (tabIndex >= 0) {
+      this.dynamicTabs.splice(tabIndex, 1);
+    }
+  }
 
   constructor(
     private ensservice: EsnService,
