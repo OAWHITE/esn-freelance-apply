@@ -8,5 +8,6 @@ export interface EnsResponse {
    email: string
 
    phone:string
-   image?:any
+   image?:Blob
+  imageType?:string
 }

@@ -7,7 +7,7 @@
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input  type="text" formControlName="name"
 
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           class="block w-full px-4 py-2 rounded-md shadow-sm {{getStatusFor('name')?'border border-red-500':''}}"
                         placeholder="Enter your name" />
                 </nz-form-control>
             </nz-form-item>
@@ -16,13 +16,25 @@
                 <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">Intitulé du
                     poste</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Intitulé du poste" formControlName="intitule">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Intitulé du poste" formControlName="intitule"
+                               class="{{getStatusFor('intitule')?'border border-red-500':''}}">
                         <nz-option nzLabel="Front-end developer" nzValue="Front"></nz-option>
                         <nz-option nzLabel="Back-end developer" nzValue="Back"></nz-option>
                         <nz-option nzLabel="Java developer" nzValue="Java"></nz-option>
                     </nz-select>
                 </nz-form-control>
             </nz-form-item>
+
+          <nz-form-item class="flex items-center space-x-4">
+            <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">CV</nz-form-label>
+            <nz-form-control [nzSpan]="14" class="flex-1">
+              <input nz-input type="file"
+                     (change)="importResume($event)"
+                     accept="application/pdf"
+                     class="block w-full px-4 py-2 rounded-md shadow-sm "
+                     placeholder="choose your resume" />
+            </nz-form-control>
+          </nz-form-item>
 
             <!-- List des competence select -->
 
@@ -31,7 +43,8 @@
                     competence</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <nz-select nzMode="tags" nzPlaceHolder="List des
-                    competence" formControlName="competences">
+                    competence" formControlName="competences"
+                    class="{{getStatusFor('competences')?'border border-red-500':''}}">
                         @for (option of listOfOption; track option) {
                         <nz-option [nzLabel]="option" [nzValue]="option"></nz-option>
                         }
@@ -44,7 +57,7 @@
                     class="text-sm font-medium text-gray-700">Email</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input  type="email" formControlName="email"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 {{getStatusFor('email')?'border border-red-500':''}}"
                         placeholder="Enter your email" />
                 </nz-form-control>
             </nz-form-item>
@@ -54,7 +67,7 @@
                     class="text-sm font-medium text-gray-700">Number</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input  type="text" formControlName="phone"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full px-4 py-2 border  rounded-md shadow-sm focus:outline-none focus:ring-2 {{getStatusFor('phone')?'border border-red-500':''}}"
                         placeholder="Enter your number" />
                 </nz-form-control>
             </nz-form-item>
@@ -65,18 +78,18 @@
         </div>
 
         <div class="w-1/3">
+
             <nz-form-item>
-                <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
-                <nz-form-control>
-                    <nz-upload nzType="drag" [nzMultiple]="true">
-                        <p class="ant-upload-text">Click or drag file to this area to upload</p>
-                        <p class="ant-upload-hint">
-                            Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-                            band files.
-                        </p>
-                    </nz-upload>
-                </nz-form-control>
+              <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
+              <nz-form-control>
+                <div class="w-28 h-28 {{!this.imageFile?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center" (click)="importImage()" style="background-image: url({{this.imageUrl}})">
+
+                </div>
+              </nz-form-control>
             </nz-form-item>
+
+
+
         </div>
     </div>
 </form>

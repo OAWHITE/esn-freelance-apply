@@ -1,5 +1,7 @@
 <p class="text-center text-lg font-semibold mb-4">ESN Form</p>
-<form nz-form [formGroup]="this.formEsn"  class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
+
+<form nz-form [formGroup]="this.formEsn"  >
     <div class="flex space-x-8">
         <div class="flex-1 space-y-6">
             <nz-form-item class="flex items-center space-x-4">
@@ -7,16 +9,17 @@
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input  type="text"
                            formControlName="name"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           nzStatus="warning"
+                        class="block w-full px-4 py-2 rounded-md shadow-sm {{getStatusFor('name')?'border border-red-500':''}}"
                         placeholder="Enter your Esn name" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item class="flex items-center space-x-4">
-                <nz-form-label [nzSpan]="6"  class="text-sm font-medium text-gray-700">full contact Name </nz-form-label>
+                <nz-form-label [nzSpan]="6"  class="text-sm font-medium text-gray-700 ">full contact Name </nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input type="text"
                         formControlName="contact"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full px-4 py-2  rounded-md shadow-sm {{getStatusFor('contact')?'border border-red-500':''}}"
                         placeholder="Enter your full contact Name" />
                 </nz-form-control>
             </nz-form-item>
@@ -25,7 +28,9 @@
                 <nz-form-label [nzSpan]="6"  class="text-sm font-medium text-gray-700">
                     poste</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Intitulé du poste" formControlName="poste">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Intitulé du poste" formControlName="poste"
+                    class="{{getStatusFor('poste')?'border border-red-500':''}}"
+                    >
                         <nz-option nzLabel="Front-end developer" nzValue="Front"></nz-option>
                         <nz-option nzLabel="Back-end developer" nzValue="Back"></nz-option>
                         <nz-option nzLabel="Java developer" nzValue="Java"></nz-option>
@@ -41,7 +46,7 @@
                 <nz-form-control [nzSpan]="14" class="flex-1">
                     <input nz-input  type="email"
                            formControlName="email"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full px-4 py-2  rounded-md shadow-sm {{getStatusFor('email')?'border border-red-500':''}}"
                         placeholder="Enter your email" />
                 </nz-form-control>
             </nz-form-item>
@@ -50,31 +55,34 @@
                 <nz-form-label [nzSpan]="6"
                     class="text-sm font-medium text-gray-700">Phone</nz-form-label>
                 <nz-form-control [nzSpan]="14" class="flex-1">
-                    <input nz-input  type="text"
+                    <input nz-input  type="tel"
+                           pattern="^[0-9]{10}$"
                            formControlName="phone"
-                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full px-4 py-2 border  rounded-md shadow-sm {{getStatusFor('phone')?'border border-red-500':''}}"
                         placeholder="Enter your number" />
                 </nz-form-control>
             </nz-form-item>
 
         </div>
-
         <div class="w-1/3">
             <nz-form-item>
                 <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzType="drag" [nzMultiple]="true" nzAccept="image/*" >
-                        <p class="ant-upload-text">Click or drag file to this area to upload</p>
-                        <p class="ant-upload-hint">
-                            Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-                            band files.
-                        </p>
-                    </nz-upload>
+                    <div class="w-28 h-28 {{!this.imageFile?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center"
+                         (click)="importImage()" style="background-image: url({{this.imageUrl}})">
+
+                    </div>
                 </nz-form-control>
             </nz-form-item>
+
+
         </div>
     </div>
     <nz-form-item class="flex justify-center">
-        <button nz-button nzType="primary" (click)="handleAddEsn()" class="mt-4 w-full">Submit</button>
+        <button nz-button nzType="primary" (click)="handleAddEsn()" class="mt-4 w-full">Valid</button>
+        <!-- <button nz-button nzType="primary" (click)="uploadImage()" class="mt-4 w-full">Next</button> -->
     </nz-form-item>
+
 </form>
+
+</div>

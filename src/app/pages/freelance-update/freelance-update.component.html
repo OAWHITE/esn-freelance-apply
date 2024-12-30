@@ -1,0 +1,100 @@
+<p class="text-center text-lg font-semibold mb-4">Edit Freelance Form</p>
+<form [formGroup]="this.formFreelance" nz-form class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
+  <div class="flex space-x-8">
+    <div class="flex-1 space-y-6">
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">Name</nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+          <input nz-input type="text" formControlName="name"
+                 class="block w-full px-4 py-2 rounded-md shadow-sm "
+                 placeholder="Enter your name"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">Intitulé du poste
+        </nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Intitulé du poste" formControlName="intitule">
+            <nz-option nzLabel="Front-end developer" nzValue="Front"></nz-option>
+            <nz-option nzLabel="Back-end developer" nzValue="Back"></nz-option>
+            <nz-option nzLabel="Java developer" nzValue="Java"></nz-option>
+            <nz-option nzLabel="Java developer" nzValue="Dev"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">CV</nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+<!--          <input nz-input type="file"-->
+<!--                 (change)="importResume($event)"-->
+<!--                 accept="application/pdf"-->
+<!--                 class="block w-full px-4 py-2 rounded-md shadow-sm {{showResumeError?'border border-red-500':''}} "-->
+<!--                 placeholder="choose your resume"/>-->
+          <div class="flex items-center cursor-pointer justify-center w-full px-4 py-2 rounded-md shadow-sm {{showResumeError?'border border-red-500':'border border-gray-300'}}"
+               (click)="importResume()"
+          >
+            <p class="w-full text-center" >
+              {{this.freelanceResponse?.resume && !this.resumeFile? 'resume.pdf':this.resumeFile?this.resumeFile.name:'choose your resume ...' }}
+            </p>
+          </div>
+
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="name" class="text-sm font-medium text-gray-700">List des competence
+        </nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+          <nz-select nzMode="tags" nzPlaceHolder="List des competence" formControlName="competences">
+            <!--            <nz-option [nzLabel]="option" [nzValue]="option"></nz-option>-->
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="email" class="text-sm font-medium text-gray-700">Email</nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+          <input nz-input type="email" formControlName="email"
+                 class="block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 "
+                 placeholder="Enter your email"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="flex items-center space-x-4">
+        <nz-form-label [nzSpan]="6" nzFor="number" class="text-sm font-medium text-gray-700">Number</nz-form-label>
+        <nz-form-control [nzSpan]="14" class="flex-1">
+          <input nz-input type="text" formControlName="phone"
+                 class="block w-full px-4 py-2 border  rounded-md shadow-sm focus:outline-none focus:ring-2 "
+                 placeholder="Enter your number"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="flex justify-center">
+        <button nz-button nzType="primary" class="mt-4" (click)="handleUpdateFreelace()">Update</button>
+      </nz-form-item>
+    </div>
+
+    <div class="w-1/3">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" class="text-sm font-medium text-gray-700">Upload your Photo</nz-form-label>
+        <nz-form-control>
+
+
+          <div class="w-28 h-28 {{!this.imageFile && !freelanceResponse?.image?'bg-gray-200':'bg-transparent'}} {{showImageError?'border border-red-500':''}} cursor-pointer bg-contain object-contain bg-no-repeat bg-center"
+               (click)="importImage()" style="background-image: url({{this.imageUrl}})"
+               style="background-image: url({{freelanceResponse?.image && !this.imageFile?'data:image/'+freelanceResponse?.imageType+';base64,'+freelanceResponse?.image:this.imageUrl}})">
+
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+
+
+  </div>
+</form>

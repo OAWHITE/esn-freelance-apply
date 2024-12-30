@@ -1,0 +1,75 @@
+<div class="p-10">
+  <div class="flex justify-between">
+    <h1 class="text-2xl text-cyan-600 font-bold">List Ens</h1>
+    <a
+      class="bg-cyan-500 font-bold text-white p-3 rounded-md hover:bg-cyan-600 hover:text-white transition-all"
+      routerLink="/esn"
+    >
+      Add New Esn
+    </a>
+  </div>
+  <div class="mt-5">
+    <nz-tabset [(nzSelectedIndex)]="selectedTabIndex" [nzType]="'editable-card'" (nzClose)="closeTab($event)">
+      <nz-tab nzTitle="ESN">
+        <nz-table #middleTable nzSize="middle" [nzData]="ensData" [nzBordered]="true">
+          <thead>
+          <tr>
+            <th>Name Ens</th>
+            <th>Name Contact</th>
+            <th>Post</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let esn of ensData; let i = index">
+            <td>{{ esn.nameEns }}</td>
+            <td>{{ esn.nameContact }}</td>
+            <td>{{ esn.poste }}</td>
+            <td>{{ esn.email }}</td>
+            <td>{{ esn.phone }}</td>
+            <td>
+              <ng-container *ngIf="esn.image">
+                <img
+                  [src]="'data:image/' + esn.imageType + ';base64,' + esn.image"
+                  alt="Freelance Image"
+                  class="h-8"
+                />
+              </ng-container>
+            </td>
+            <td>
+              <div class="flex gap-2">
+                <button
+                  class="p-2 w-16 rounded-sm bg-red-500"
+                  (click)="deleteEsn(esn.id)"
+                >
+                  Delete
+                </button>
+                <button
+                  class="p-2 w-16 rounded-sm bg-green-500"
+                  (click)="openEditTab(esn, i)"
+                >
+                  Edit
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+      <nz-tab
+        *ngFor="let tab of dynamicTabs; let i = index"
+        [nzClosable]="true"
+        [nzTitle]=" tab.esn.nameEns"
+      >
+        <div>
+
+          <app-esn-update [esn]="tab.esn"></app-esn-update>
+
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
