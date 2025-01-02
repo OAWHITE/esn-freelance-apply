@@ -3,7 +3,7 @@ import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {AuthenticationService} from "../../shared/services/authentication.service";
-
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-main-layout',
   standalone: true,
@@ -16,12 +16,14 @@ export class MainLayoutComponent implements OnInit {
 isLoginPage = false;
   constructor(public router: Router,
               private authService: AuthenticationService,
+              private translateService: TranslateService
   ) {
 
 
   }
 
   ngOnInit() {
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isLoginPage = this.router.url === '/login';
@@ -33,4 +35,7 @@ isLoginPage = false;
     this.router.navigate(['/login']);
 }
 
+  switchLanguage(language: string) {
+    this.translateService.use(language);
+  }
 }

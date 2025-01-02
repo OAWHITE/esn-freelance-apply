@@ -6,6 +6,13 @@
     "project": {
       "projectType": "application",
       "schematics": {},
+      "i18n": {
+        "sourceLocale": "en",
+        "locales":{
+        "fr": "src/assets/i18n/fr.json",
+        "es": "src/assets/i18n/en.json"
+      }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,7 +35,12 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {

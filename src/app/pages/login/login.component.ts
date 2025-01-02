@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {LoginRequest} from "../../shared/model/LoginRequest";
 import {AuthenticationService} from "../../shared/services/authentication.service";
 import {NzInputDirective} from "ng-zorro-antd/input";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,7 @@ import {NzInputDirective} from "ng-zorro-antd/input";
   imports: [
     RouterLink,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -24,11 +27,18 @@ export class LoginComponent implements OnInit {
               private nzNotif: NzNotificationService,
               private authService: AuthenticationService,
               private router: Router,
+              private translateService: TranslateService,
+              @Inject(DOCUMENT) private document: Document
 
-  ) {}
+  ) {
+
+  }
+
 
   ngOnInit() {
     this.initForm()
+
+
   }
 
 
@@ -69,6 +79,7 @@ export class LoginComponent implements OnInit {
       this.nzNotif.error("Oops ! ", "All fields are required");
     }
   }
+
 
 
 }
