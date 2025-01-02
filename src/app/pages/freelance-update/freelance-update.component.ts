@@ -9,7 +9,6 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
 import {NzButtonModule} from "ng-zorro-antd/button";
-import {immediateProvider} from "rxjs/internal/scheduler/immediateProvider";
 
 
 @Component({

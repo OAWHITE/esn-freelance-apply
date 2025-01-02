@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {LoginRequest} from "../../shared/model/LoginRequest";
 import {AuthenticationService} from "../../shared/services/authentication.service";
+import {NzInputDirective} from "ng-zorro-antd/input";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private nzNotif: NzNotificationService,
               private authService: AuthenticationService,
-              private router: Router
+              private router: Router,
+
   ) {}
 
   ngOnInit() {
@@ -38,6 +40,9 @@ export class LoginComponent implements OnInit {
   }
 
 
+  getStatusFor(key:string):boolean{
+    return (this.loginForm.get(key)?.errors!=null && this.loginForm.get(key)?.touched) as boolean;
+  }
   login() {
     if (this.loginForm.valid) {
       let loginRequest: LoginRequest = {
@@ -47,15 +52,20 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginRequest).subscribe({
         next: (response) => {
+          console.log(response);
           localStorage.setItem('access_token', response.token);
+          this.nzNotif.success("Information","You logged in Successffully")
           this.router.navigate(['/freelance/list'])
         },
         error: () => {
+          this.nzNotif.error("an error occurred ", "an error occurred while login, be sure that all fields is filled correctly ? please try again");
+
         }
       })
 
 
     } else {
+
       this.nzNotif.error("Oops ! ", "All fields are required");
     }
   }

@@ -5,7 +5,7 @@ import { FreelanceResponse } from '../../shared/model/FreelanceResponse';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { Router, RouterLink } from '@angular/router';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { FreelanceUpdateComponent } from '../freelance-update/freelance-update.component';
 import {NzImageService} from "ng-zorro-antd/image";

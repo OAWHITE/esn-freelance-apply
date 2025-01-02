@@ -7,7 +7,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { EsnService } from '../../shared/services/esn.service';
 import { EsnRequest } from '../../shared/model/EsnRequest';
 import { Router } from "@angular/router";
-import { EnsImageComponent } from './ens-image/ens-image.component';
 import { EnsResponse } from '../../shared/model/EnsResponse';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import {NzInputModule} from "ng-zorro-antd/input";

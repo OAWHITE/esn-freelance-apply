@@ -1,13 +1,26 @@
 import { CanActivateFn, Router } from '@angular/router';
-
+import {inject} from "@angular/core";
+import {AuthenticationService} from "../../shared/services/authentication.service";
+import {catchError, map, of} from "rxjs";
 export const loginCheckGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem('access_token'); // Check for token in local storage
+  const authService = inject(AuthenticationService);
+  const router = inject(Router);
 
-  if (token) {
-    const router = new Router(); // Instantiate Router manually
-    router.navigate(['/']);
-    return false; // Prevent navigation to the login page
+  const token = localStorage.getItem('access_token');
+
+  if (!token) {
+    return true;
   }
 
-  return true; // Allow navigation to the login page
+  return authService.validateToken(token).pipe(
+    map(response => {
+
+        router.navigate(['/']);
+        return false;
+      }
+    ),
+    catchError(() => {
+      return of(true);
+    })
+  );
 };

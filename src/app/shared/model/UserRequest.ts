@@ -1,8 +1,7 @@
-export interface UserDto {
-  id: number;
+export interface UserRequest {
   firstName: string;
   lastName: string;
   email: string;
-  token: string;
+  password: string;
 }
 

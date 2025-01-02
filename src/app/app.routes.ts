@@ -2,7 +2,6 @@ import {Routes} from '@angular/router';
 import {MainPageComponent} from './pages/main-page/main-page.component';
 import {FreelanceFormComponent} from './pages/freelance-form/freelance-form.component';
 import {EsnFormComponent} from './pages/esn-form/esn-form.component';
-import {EnsImageComponent} from './pages/esn-form/ens-image/ens-image.component';
 import {ListEsnComponent} from "./pages/list-esn/list-esn.component";
 import {ListFreelanceComponent} from "./pages/list-freelance/list-freelance.component";
 import {EsnUpdateComponent} from "./pages/esn-update/esn-update.component";
@@ -11,6 +10,7 @@ import {esnUpdateResolver} from "./core/resolvers/esn-update.resolver";
 import {LoginComponent} from "./pages/login/login.component";
 import {authGuard} from "./core/guards/auth.guard";
 import {loginCheckGuard} from "./core/guards/login-check.guard";
+import {RegisterComponent} from "./pages/register/register.component";
 
 export const routes: Routes = [
   {
@@ -55,5 +55,9 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [loginCheckGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   }
 ];
