@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && node copy-proxy-server.js",
+    "build-stg": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:project": "node dist/project/server/server.mjs"
+    "serve:ssr:project": "node dist/project/server/server.mjs",
+    "ssr": "node dist/project/proxy-server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,7 @@
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
     "express": "^4.18.2",
+    "i18next": "^23.14.0",
     "ng-zorro-antd": "^17.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

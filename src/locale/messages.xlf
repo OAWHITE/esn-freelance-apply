@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
-    <body>
-      <trans-unit id="7028204981963450021" datatype="html">
-        <source>Sign up</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">48,49</context>
-        </context-group>
-      </trans-unit>
-    </body>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-US">
+  <file id="ngi18n" original="ng.template">
+    <unit id="5579867071769973287">
+      <notes>
+        <note category="location">src/app/pages/login/login.component.html:14,15</note>
+        <note category="description">signIn</note>
+      </notes>
+      <segment>
+        <source> Create an account </source>
+      </segment>
+    </unit>
   </file>
 </xliff>

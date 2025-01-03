@@ -22,10 +22,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideNzI18n(en_US),
+    // provideNzI18n(en_US),
     importProvidersFrom(FormsModule),
     provideHttpClient(),
-    provideNzI18n(en_US),
+    // provideNzI18n(en_US),
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
     provideHttpClient(

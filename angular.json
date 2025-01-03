@@ -7,11 +7,19 @@
       "projectType": "application",
       "schematics": {},
       "i18n": {
-        "sourceLocale": "en",
-        "locales":{
-        "fr": "src/assets/i18n/fr.json",
-        "es": "src/assets/i18n/en.json"
-      }
+        "sourceLocale": {
+          "baseHref": "/"
+        },
+        "locales": {
+          "fr": {
+            "translation": "src/locale/messages.fr.xlf",
+            "baseHref": "/fr/"
+          },
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": "/en/"
+          }
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -22,6 +30,7 @@
           "options": {
             "outputPath": "dist/project",
             "index": "src/index.html",
+            "localize": true,
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -44,6 +53,10 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "localize": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -87,7 +100,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "project:build"
+            "buildTarget": "project:build",
+            "format": "xlf2",
+            "outputPath": "src/locale"
           }
         },
         "test": {
