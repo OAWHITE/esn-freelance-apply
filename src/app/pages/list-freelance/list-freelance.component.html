@@ -5,7 +5,7 @@
       class="bg-cyan-500 font-bold text-white p-3 rounded-md hover:bg-cyan-600 hover:text-white transition-all"
       routerLink="/freelance"
     >
-      Add New Freelancer
+      {{ 'list.addFreelance' | translate }}
     </a>
   </div>
 
@@ -18,12 +18,12 @@
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Intitule</th>
-            <th>Competences</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Image</th>
-            <th>Action</th>
+            <th>{{ 'list.titled' | translate }}</th>
+            <th>{{ 'list.competences' | translate }}</th>
+            <th>{{ 'list.email' | translate }}</th>
+            <th>{{ 'list.phone' | translate }}</th>
+            <th>{{ 'list.image' | translate }}</th>
+            <th>{{ 'list.action' | translate }}</th>
           </tr>
           </thead>
           <tbody>
@@ -47,8 +47,8 @@
               }            </td>
             <td>
               <div class="flex gap-2">
-                <button class="p-2 w-16 rounded-sm bg-red-500" (click)="deleteFreelance(freelance.id)">Delete</button>
-                <button class="p-2 w-16 rounded-sm bg-green-500" (click)="openEditTab(freelance, i)">Edit</button>
+                <button class="p-2 w-24 rounded-sm bg-red-500" (click)="deleteFreelance(freelance.id)">{{ 'list.delete' | translate }}</button>
+                <button class="p-2 w-24 rounded-sm bg-green-500" (click)="openEditTab(freelance, i)">{{ 'list.edit' | translate }}</button>
               </div>
             </td>
           </tr>

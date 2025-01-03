@@ -9,11 +9,12 @@ import { NgForOf } from '@angular/common';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { FreelanceUpdateComponent } from '../freelance-update/freelance-update.component';
 import {NzImageService} from "ng-zorro-antd/image";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-list-freelance',
   standalone: true,
-  imports: [NzTableModule, NzModalModule, RouterLink, NzTabsModule, NgForOf, FreelanceUpdateComponent],
+  imports: [NzTableModule, NzModalModule, RouterLink, NzTabsModule, NgForOf, FreelanceUpdateComponent, TranslatePipe],
   providers: [NzImageService],
   templateUrl: './list-freelance.component.html',
   styleUrls: ['./list-freelance.component.css']
@@ -30,7 +31,8 @@ export class ListFreelanceComponent implements OnInit {
     private freelanceService: FreelanceService,
     private router: Router,
     private nzNotif: NzNotificationService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private translateService: TranslateService,
   ) {}
 
   ngOnInit() {
@@ -73,25 +75,28 @@ export class ListFreelanceComponent implements OnInit {
   }
 
   deleteFreelance(id: number) {
-    this.modalService.confirm({
-      nzTitle: 'Are you sure delete this freelance?',
-      nzContent: '<b style="color: red;">you are about to delete a freelancer</b>',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.freelanceService.freelanceDelete(id).subscribe({
-          next: () => {
-            this.getFreelance();
-            this.nzNotif.success('Suppression', 'Freelancer deleted successfully');
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-      },
-      nzCancelText: 'No',
-    });
+    this.translateService.get("notifications").subscribe((data:any ) => {
+      this.modalService.confirm({
+        nzTitle: data.confirmDeleteFreelance,
+        nzContent: `<b style="color: red;">${data.deleteFree}</b>`,
+        nzOkText: data.confirmDelete,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOnOk: () => {
+          this.freelanceService.freelanceDelete(id).subscribe({
+            next: () => {
+              this.getFreelance();
+              this.nzNotif.success(data.suppressionNotif, data.freelanceDelete);
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+        },
+        nzCancelText: data.no,
+      });
+    })
+
   }
 
   editFreelance(id: number) {

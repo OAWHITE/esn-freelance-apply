@@ -10,11 +10,12 @@ import { Router } from "@angular/router";
 import { EnsResponse } from '../../shared/model/EnsResponse';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import {NzInputModule} from "ng-zorro-antd/input";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-esn-form',
   standalone: true,
-  imports: [NzFormModule, ReactiveFormsModule, NzFormModule, NzSelectModule, NzButtonModule, NzUploadModule, NzInputModule],
+  imports: [NzFormModule, ReactiveFormsModule, NzFormModule, NzSelectModule, NzButtonModule, NzUploadModule, NzInputModule, TranslatePipe],
   templateUrl: './esn-form.component.html',
   styleUrls: ['./esn-form.component.css'],
 })
@@ -33,6 +34,7 @@ export class EsnFormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private nzNotif:NzNotificationService,
+    private translateService: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +78,10 @@ export class EsnFormComponent implements OnInit {
         next: (data) => {
             this.esnService.uploadImage(data.id,this.imageFile as File).subscribe({
               next:()=>{
-                this.nzNotif.success("Information","Esn Applied Successffully")
+                this.translateService.get("notifications").subscribe((data:any ) => {
+                  this.nzNotif.success(data.informationNotif, data.tesuccesAddESN);
+
+                })
                 this.router.navigate(["/"]);
               },error:(err)=>{
                 console.log("an error occurred while uploading image ", err);
@@ -93,7 +98,10 @@ export class EsnFormComponent implements OnInit {
         this.showImageError = true;
       }
       console.log(this.getAllErrors(this.formEsn));
-      this.nzNotif.error("an error occurred ", "an error occurred while adding esn, be sure that all fields is filled correctly ? please try again");
+      this.translateService.get("notifications").subscribe((data:any ) => {
+        this.nzNotif.error(data.errorNotif, data.erroraddEsn);
+
+      })
     }
   }
 

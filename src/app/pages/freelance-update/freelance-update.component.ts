@@ -9,12 +9,13 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-freelance-update',
   standalone: true,
-  imports: [NzFormModule, FormsModule, ReactiveFormsModule, NzOptionComponent, NzSelectComponent, NzInputModule, NzButtonModule],
+  imports: [NzFormModule, FormsModule, ReactiveFormsModule, NzOptionComponent, NzSelectComponent, NzInputModule, NzButtonModule, TranslatePipe],
   templateUrl: './freelance-update.component.html',
   styleUrl: './freelance-update.component.css'
 })
@@ -36,7 +37,9 @@ export class FreelanceUpdateComponent implements OnInit {
               private fb: FormBuilder,
               private nzNotif: NzNotificationService,
               private route: ActivatedRoute,
-              private router: Router,) {
+              private router: Router,
+              private translateService: TranslateService,
+              ) {
   }
 
   ngOnInit() {
@@ -105,12 +108,18 @@ export class FreelanceUpdateComponent implements OnInit {
       this.freelanceService.updateFreelance(this.freelanceResponse?.id as number, this.resumeFile, this.imageFile as File, freelanceRequest).subscribe({
         next: (data) => {
           console.log("updated successffuly")
-          this.nzNotif.success('Success', 'Freelance updated successfully');
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.success(data.informationNotif, data.teSuccesFreelance);
+
+          })
           this.router.navigate(["/freelance/list"])
 
         }, error: err => {
           console.error("an error occured ", err)
-          this.nzNotif.error('Error', 'An error occurred while updating the freelance data');
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.error(data.errorNotif, data.errorUpdateFreelance);
+
+          })
         }
       })
     } else {

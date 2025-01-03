@@ -5,7 +5,7 @@
       class="bg-cyan-500 font-bold text-white p-3 rounded-md hover:bg-cyan-600 hover:text-white transition-all"
       routerLink="/esn"
     >
-      Add New Esn
+      {{ 'list.addEsn' | translate }}
     </a>
   </div>
   <div class="mt-5">
@@ -14,17 +14,19 @@
         <nz-table #middleTable nzSize="middle" [nzData]="ensData" [nzBordered]="true">
           <thead>
           <tr>
-            <th>Name Ens</th>
-            <th>Name Contact</th>
-            <th>Post</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th>ID</th>
+            <th>{{ 'list.nameEsn' | translate }}</th>
+            <th>{{ 'list.nameContact' | translate }}</th>
+            <th>{{ 'list.titled' | translate }}</th>
+            <th>{{ 'list.email' | translate }}</th>
+            <th>{{ 'list.phone' | translate }}</th>
             <th>Image</th>
             <th>Action</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let esn of ensData; let i = index">
+            <td>{{ esn.id}}</td>
             <td>{{ esn.nameEns }}</td>
             <td>{{ esn.nameContact }}</td>
             <td>{{ esn.poste }}</td>
@@ -52,16 +54,16 @@
             <td>
               <div class="flex gap-2">
                 <button
-                  class="p-2 w-16 rounded-sm bg-red-500"
+                  class="p-2 w-24 rounded-sm bg-red-500"
                   (click)="deleteEsn(esn.id)"
                 >
-                  Delete
+                  {{ 'list.delete' | translate }}
                 </button>
                 <button
-                  class="p-2 w-16 rounded-sm bg-green-500"
+                  class="p-2 w-24  rounded-sm bg-green-500"
                   (click)="openEditTab(esn, i)"
                 >
-                  Edit
+                  {{ 'list.edit' | translate }}
                 </button>
               </div>
             </td>

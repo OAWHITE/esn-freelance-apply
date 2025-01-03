@@ -1,3 +1,111 @@
 {
-  "input": "Se connecter"
+  "signInUP": {
+    "password": "Mot de passe",
+    "forgot_password": "Mot de passe oublié ?",
+    "remember_me": "Souviens-toi de moi",
+    "signin": "Connectez-vous à votre compte",
+    "createAccount": "Créer un compte",
+    "firstName": "Prénom",
+    "email": "Votre Email",
+
+    "lastName": "Nom",
+    "confirmPassword": "Confirmer le mot de passe",
+    "signUp": "S'inscrire",
+    "noAccount": "Vous n'avez pas encore de compte ?"
+  },
+  "layout": {
+    "listFreenlance" : "Liste des Freelances",
+    "listEsn": "Liste des ESN",
+    "contact": "Contact",
+    "profile": "Profil",
+    "language": "Langue",
+    "profileManager": "Gestionnaire de profil",
+    "logout": "Déconnexion",
+    "en": "Anglais",
+    "fr": "Français"
+  },
+  "list": {
+    "addFreelance": "Ajouter un  Freelance",
+    "addEsn": "Ajouter un  ESN",
+    "action": "Action",
+    "edit": "Modifier",
+    "titled": "Titre",
+    "phone": "Téléphone",
+    "competences": "Compétences",
+    "email": "Email",
+    "image": "Image",
+    "delete": "Supprimer",
+    "nameEsn": "Nom de l'ESN",
+    "nameContact": "Nom du contact",
+    "post": "Poste"
+  },
+  "update": {
+    "editFreelance": "Modifier le formulaire de Freelance",
+    "update": "Mettre à jour"
+  },
+  "from": {
+    "nameEsn": "Nom de l'ESN",
+    "name": "Nom",
+    "contactName": "Nom Complet ",
+    "titled": "Intitulé du poste",
+    "jobs": "Métiers",
+    "phone": "Téléphone",
+    "skills": "Liste des compétences",
+    "email": "Email",
+    "image": "Image",
+    "uploadphoto": "Téléchargez votre photo",
+    "submit": "Soumettre",
+    "resume": "Résumé",
+    "Valid": "Valide"
+  },
+  "placeholder": {
+    "email": "Votre email",
+    "first_name": "Entrez votre prénom",
+    "last_name": "Entrez votre nom",
+    "esnName": "Entrez le nom de votre ESN",
+    "contactName": "Entrez le nom complet de votre contact",
+    "post": "Titre du poste",
+    "email": "Entrez votre email",
+    "Phone": "Entrez votre téléphone",
+    "nameFreelance": "Entrez votre nom",
+    "listOfSkills": "Liste des compétences"
+  },
+  "home": {
+    "homeTitle": "Choisissez votre champ"
+  },
+  "main": {
+    "choose": "Choisissez votre domaine"
+  },
+  "errors": {
+    "errorSignup": "Ce champ est requis"
+  },
+  "notifications": {
+    "signUpSucces": "Inscription réussie",
+    "errorSignUp": "Une erreur s'est produite lors de l'enregistrement, assurez-vous que tous les champs sont correctement remplis. Veuillez réessayer.",
+    "warningFields": "Tous les champs sont obligatoires !",
+    "errorUpdateEsn": "Une erreur s'est produite lors de la mise à jour des données de l'ESN",
+    "invalidEsnId": "ID ESN invalide",
+    "erroraddEsn": "Une erreur s'est produite lors de l'ajout de l'ESN, assurez-vous que tous les champs sont correctement remplis. Veuillez réessayer.",
+    "succesAddESN": "ESN ajouté avec succès",
+    "errorAddignFreelance": "Une erreur s'est produite lors de l'ajout du freelance, assurez-vous que tous les champs sont correctement remplis. Veuillez réessayer.",
+    "errorLogin": "Une erreur s'est produite lors de la connexion, assurez-vous que tous les champs sont correctement remplis. Veuillez réessayer.",
+    "freelanceDelete": "Freelance supprimé avec succès",
+    "esnDelete": "Esn supprimé avec succès",
+    "confirmDeleteFreelance": "Êtes-vous sûr de vouloir supprimer ce freelance ?",
+    "confirmDeleteEsn": "Êtes-vous sûr de vouloir supprimer cet ESN ?",
+    "confirmDelete": "Oui",
+    "addSuccesFreelance": "Poste de freelance postulé avec succès",
+    "updateSuccesFreelance": "Freelance mis à jour avec succès",
+    "errorUpdateFreelance": "Une erreur s'est produite lors de la mise à jour des données du freelance",
+    "updateSuccesEsn": "ESN mis à jour avec succès",
+    "loginsecces": "Connexion réussie",
+    "errorloginfields": "Tous les champs sont obligatoires",
+    "suppressionNotif": "Suppression",
+    "errorNotif": "Une erreur s'est produite",
+    "informationNotif": "Information",
+    "warningNotif": "Avertissement",
+    "deleteFree": "Vous êtes sur le point de supprimer un Freelance",
+    "deleteEsnconfirme": "Vous êtes sur le point de supprimer un Esn",
+    "no": "Non"
+  }
 }

@@ -3,7 +3,7 @@
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="https://cdn.vectorstock.com/i/1000v/06/62/management-business-logo-template-concept-vector-31080662.jpg"
            class="h-8" alt="Flowbite Logo"/>
-      <span class="self-center text-2xl font-semibold whitespace-nowrap ">profile manager</span>
+      <span class="self-center text-2xl font-semibold whitespace-nowrap ">{{'layout.profileManager'|translate}}</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
@@ -20,27 +20,26 @@
         <li>
           <a routerLink="/freelance/list"
              class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent  {{this.router.url==='/freelance/list'?'md:text-blue-700':'md:text-black'}} md:p-0"
-             aria-current="page">List Of Freelancers</a>
+             aria-current="page">{{'layout.listFreenlance'|translate}}</a>
         </li>
         <li>
           <a routerLink="/esn/list"
-             class="block py-2 px-3 {{this.router.url==='/esn/list'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">List
-            Of Esns</a>
+             class="block py-2 px-3 {{this.router.url==='/esn/list'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">{{'layout.listEsn'|translate}}</a>
         </li>
         <li>
           <a href="#"
-             class="block py-2 px-3 {{this.router.url==='/contact'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Contact</a>
+             class="block py-2 px-3 {{this.router.url==='/contact'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">{{'layout.contact'|translate}}</a>
         </li>
         <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="profileMenu">
           <a>
-            Profile
+            {{'layout.profile'|translate}}
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #profileMenu="nzDropdownMenu">
             <ul>
               <li>
                 <button (click)="logout()" class="block py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200">
-                  Log out
+                  {{'layout.logout'|translate}}
                 </button>
               </li>
             </ul>
@@ -48,19 +47,21 @@
         </li>
         <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="languageMenu">
           <a>
-            Language
+            {{'layout.language'|translate}}
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #languageMenu="nzDropdownMenu">
             <ul>
               <li>
-                <button class="block py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('en')">
-                  English
+                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('en')">
+                  <img src="https://flagcdn.com/w40/us.png" alt="English" class="w-6 h-4 mr-2" />
+                  {{'layout.en'|translate}}
                 </button>
               </li>
               <li>
-                <button class="block py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('fr')">
-                  Français
+                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('fr')">
+                  <img src="https://flagcdn.com/w40/fr.png" alt="Français" class="w-6 h-4 mr-2" />
+                  {{'layout.fr'|translate}}
                 </button>
               </li>
             </ul>

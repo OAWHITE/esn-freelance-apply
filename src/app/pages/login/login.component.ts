@@ -64,11 +64,16 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           console.log(response);
           localStorage.setItem('access_token', response.token);
-          this.nzNotif.success("Information","You logged in Successffully")
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.success(data.informationNotif,data.loginsecces)
+          })
           this.router.navigate(['/freelance/list'])
         },
         error: () => {
-          this.nzNotif.error("an error occurred ", "an error occurred while login, be sure that all fields is filled correctly ? please try again");
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.error(data.errorNotif, data.errorLogin);
+
+          })
 
         }
       })

@@ -10,6 +10,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {NzButtonComponent} from "ng-zorro-antd/button";
 import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
 import {EsnRequest} from "../../shared/model/EsnRequest";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -22,7 +23,8 @@ import {EsnRequest} from "../../shared/model/EsnRequest";
     NzOptionComponent,
     NzFormItemComponent,
     NzInputModule,
-    NzButtonComponent
+    NzButtonComponent,
+    TranslatePipe
 
   ],
   templateUrl: './esn-update.component.html',
@@ -43,6 +45,7 @@ export class EsnUpdateComponent implements OnInit {
               private fb:FormBuilder,
               private nzNotif:NzNotificationService,
               private router: Router,
+              private translateService: TranslateService,
   ) {}
   ngOnInit(): void {
     if (this.esn) {
@@ -94,18 +97,27 @@ export class EsnUpdateComponent implements OnInit {
         this.esnService.updateEsn(esnId, this.imageFile as File, esnRequest).subscribe({
           next: (data) => {
             this.router.navigate(["/esn/list"]);
-            this.nzNotif.success('Success', 'Esn updated successfully');
+            this.translateService.get("notifications").subscribe((data:any ) => {
+              this.nzNotif.success(data.informationNotif, data.updateSuccesEsn);
+
+            })
 
             // this.closeTab();
           },
           error: (err) => {
             console.error("An error occurred ", err);
-            this.nzNotif.error('Error', 'An error occurred while updating the Esn data');
+            this.translateService.get("notifications").subscribe((data:any ) => {
+              this.nzNotif.error(data.errorNotif, data.erroraddEsn);
+
+            })
           }
         });
       } else {
         // Handle case where esnResponse.id is undefined
-        this.nzNotif.error('Error', 'Invalid ESN id');
+        this.translateService.get("notifications").subscribe((data:any ) => {
+          this.nzNotif.error(data.errorNotif, data.invalidEsnId);
+
+        })
       }
     }
   }

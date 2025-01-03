@@ -9,11 +9,12 @@ import { FreelanceService } from '../../shared/services/freelance.service';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import {NzInputDirective} from "ng-zorro-antd/input";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-freelance-form',
   standalone: true,
-  imports: [NzFormModule, FormsModule, NzSelectModule, NzButtonModule, NzUploadModule, ReactiveFormsModule, NzInputDirective],
+  imports: [NzFormModule, FormsModule, NzSelectModule, NzButtonModule, NzUploadModule, ReactiveFormsModule, NzInputDirective, TranslatePipe],
   templateUrl: './freelance-form.component.html',
   styleUrl: './freelance-form.component.css'
 })
@@ -32,6 +33,7 @@ export class FreelanceFormComponent implements OnInit {
     private fb:FormBuilder,
     private router: Router,
     private nzNotif:NzNotificationService,
+    private translateService: TranslateService,
   ) {
   }
 
@@ -64,7 +66,10 @@ export class FreelanceFormComponent implements OnInit {
         next:(data)=>{
           this.freelanceService.uploadImage(data.id , this.imageFile as File).subscribe({
               next:()=>{
-                this.nzNotif.success("Information","Esn Applied Successffully")
+                this.translateService.get("notifications").subscribe((data:any ) => {
+                  this.nzNotif.success(data.informationNotif, data.addSuccesFreelance);
+
+                })
                 this.router.navigate(["/"]);
               },error:(err)=>{
               console.log("an error occurred while uploading image ", err);
@@ -81,8 +86,10 @@ export class FreelanceFormComponent implements OnInit {
         this.showImageError = true;
       }
       console.log(this.getAllErrors(this.freelanceForm));
-      this.nzNotif.error("an error occurred ", "an error occurred while adding freelance, be sure that all fields is filled correctly ? please try again");
-    }
+      this.translateService.get("notifications").subscribe((data:any ) => {
+        this.nzNotif.error(data.errorNotif, data.errorAddignFreelance);
+
+      }) }
   }
 
   getAllErrors(formGroup: FormGroup): { [key: string]: any } {

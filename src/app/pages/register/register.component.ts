@@ -9,13 +9,15 @@ import {Router, RouterLink} from "@angular/router";
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {UserRequest} from "../../shared/model/UserRequest";
 import {RegisterService} from "../../shared/services/register.service";
+import {TranslatePipe , TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    TranslatePipe
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -34,6 +36,7 @@ export class RegisterComponent implements OnInit {
               private registerService: RegisterService,
               private router: Router,
               private nzNotif: NzNotificationService,
+              private translateService: TranslateService,
   ) {
 
 
@@ -92,14 +95,22 @@ export class RegisterComponent implements OnInit {
       };
       this.registerService.createUser(userRequest).subscribe({
         next: () => {
-          this.nzNotif.success("Information", "You sign up Successffully")
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.success(data.informationNotif, data.signUpSucces);
+
+          })
           this.router.navigate(["/"]);
         }, error: (err) => {
-          this.nzNotif.error("an error occurred ", "an error occurred while register, be sure that all fields is filled correctly ? please try again");
-        }
+          this.translateService.get("notifications").subscribe((data:any ) => {
+            this.nzNotif.error(data.errorNotif, data.errorSignUp);
+
+          })        }
       })
     } else {
-      this.nzNotif.warning("Warning", "All fields are required !");
+      this.translateService.get("notifications").subscribe((data:any ) => {
+        this.nzNotif.warning(data.warningNotif, data.warningFields);
+
+      })
       this.getAllError()
     }
   }

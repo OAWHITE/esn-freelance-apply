@@ -10,10 +10,11 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {EsnUpdateComponent} from "../esn-update/esn-update.component";
 import { NzImageService } from 'ng-zorro-antd/image';
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-list-esn',
   standalone: true,
-  imports: [NzTableModule, NzModalModule, RouterLink, NgIf, NzTabsModule, NgForOf, EsnUpdateComponent],
+  imports: [NzTableModule, NzModalModule, RouterLink, NgIf, NzTabsModule, NgForOf, EsnUpdateComponent, TranslatePipe],
   templateUrl: './list-esn.component.html',
   providers: [NzImageService],
   styleUrl: './list-esn.component.css'
@@ -51,6 +52,7 @@ export class ListEsnComponent implements OnInit {
     private nzNotif: NzNotificationService,
     private router: Router,
     private modalService: NzModalService,
+    private translateService: TranslateService,
     private sanitizer: DomSanitizer) {
   }
 
@@ -70,28 +72,27 @@ export class ListEsnComponent implements OnInit {
   }
 
   deleteEsn(id: number) {
-    this.modalService.confirm({
-      nzTitle: 'Are you sure delete this esn?',
-      nzContent: '<b style="color: red;">you are on the point of deleting esn</b>',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.ensservice.ensDelete(id).subscribe({
-          next: () => {
-            this.loadEns()
-            this.nzNotif.success("Suppression", 'ens supprimé avec succes')
-          }
-          ,
-          error: (err) => {
-            console.log(err)
-          }
-        })
-      },
-      nzCancelText: 'No',
-      nzOnCancel: () => {
-      }
-    });
+    this.translateService.get("notifications").subscribe((data:any ) => {
+      this.modalService.confirm({
+        nzTitle: data.confirmDeleteEsn,
+        nzContent: `<b style="color: red;">${data.deleteEsnconfirme}</b>`,
+        nzOkText: data.confirmDelete,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOnOk: () => {
+          this.ensservice.ensDelete(id).subscribe({
+            next: () => {
+              this.loadEns();
+              this.nzNotif.success(data.suppressionNotif, data.esnDelete);
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+        },
+        nzCancelText: data.no,
+      });
+    })
   }
 
   LoadImages(esnObject: EnsResponse, file: Blob | undefined) {

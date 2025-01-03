@@ -1,3 +1,117 @@
 {
-  "input": "Log in"
+"signInUP": {
+  "password": "Password",
+  "forgot_password": "Forgot password?",
+  "remember_me": "Remember me",
+  "signin": "Sign in to your account",
+  "createAccount": "Create an account",
+  "firstName": "first Name",
+  "lastName": "last Name",
+  "email": "Your Email",
+  "confirmPassword": "Confirm Password",
+  "signUp": " Sign Up",
+  "noAccount": "Don't have an account yet?"
+},
+  "layout": {
+    "listFreenlance" : "List  Freelance",
+    "listEsn": "List  ESN",
+    "contact": "Contact",
+    "profile": "profile",
+    "language": "language",
+    "profileManager": "Profile Manager",
+    "logout": "Log out",
+    "en": "English",
+    "fr": "French"
+  },
+  "list": {
+    "addFreelance": "Add New Freelance",
+    "addEsn": "Add  Esn",
+    "action": "Action",
+    "edit": "Edit",
+    "titled": "Titled",
+    "phone": "Phone",
+    "competences": "skills",
+    "email": "email",
+    "image": "image",
+    "delete": "Delete",
+    "nameEsn": "Name Esn",
+    "nameContact": "Name Contact",
+    "post": "Post"
+  },
+"update":{
+  "editFreelance": "Edit Freelance Form",
+  "update": "Update"
+},
+  "from":{
+    "nameEsn": "ESN Name",
+    "name":"Name",
+    "contactName": "Full Contact Name",
+    "titled": "Job Title",
+    "jobs": "jobs",
+    "phone": "Phone",
+    "skills": "List of skills",
+    "email": "Email",
+    "image": "image",
+    "uploadphoto": "Upload your Photo",
+    "submit": "Submit",
+    "resume": "Resume",
+    "Valid": "Valid"
+  },
+  "placeholder":
+  {
+    "email": "Your email",
+    "first_name": "Enter your first Name ",
+    "last_name":"Enter your last Name",
+    "esnName": "Enter your Esn Name",
+    "contactName": "Enter your Full Contact Name",
+    "post": "Job title",
+    "email": "Enter Your Email",
+    "Phone": "Enter Yout Phone",
+    "nameFreelance": "Enter Your Name",
+    "listOfSkills": "List of skills"
+  },
+  "home": {
+    "homeTitle": "Choose your field"
+  },
+
+  "main": {
+    "choose": "Choose your field"
+  },
+  "errors": {
+    "errorSignup": "this field is required"
+
+  },
+  "notifications": {
+    "signUpSucces": " You sign up Successffully",
+    "errorSignUp": " an error occurred while register, be sure that all fields is filled correctly ? please try again",
+    "warningFields": " All fields are required !",
+    "errorUpdateEsn": "An error occurred while updating the Esn data",
+    "invalidEsnId": "Invalid ESN id",
+    "erroraddEsn": "an error occurred while adding esn, be sure that all fields is filled correctly ? please try again",
+    "succesAddESN": "Esn Applied Successffully",
+    "errorAddignFreelance": "an error occurred while adding freelance, be sure that all fields is filled correctly ? please try again",
+    "errorLogin": "an error occurred while login, be sure that all fields is filled correctly ? please try again",
+    "freelanceDelete": " Freelancer deleted successfully",
+    "esnDelete": " Esn deleted successfully",
+    "confirmDeleteFreelance": "Are you sure delete this freelance?",
+    "confirmDeleteEsn": "Are you sure delete this esn?",
+    "confirmDelete": "Yes",
+    "addSuccesFreelance": "Freelance Applied Successffully",
+    "updateSuccesFreelance": "Freelance updated successfully",
+    "errorUpdateFreelance": "An error occurred while updating the freelance data",
+    "updateSuccesEsn": "Esn updated successfully",
+    "loginsecces": "You logged in Successffully",
+    "errorloginfields": "All fields are required",
+    "suppressionNotif": "Suppression",
+    "errorNotif": "An error occurred",
+    "informationNotif": "Information",
+    "warningNotif": "Warning",
+    "deleteFree": "you are about to delete a freelancer",
+    "deleteEsnconfirme": "you are about to delete a Esn",
+
+    "no": "No"
+  }
 }
+
+
+
