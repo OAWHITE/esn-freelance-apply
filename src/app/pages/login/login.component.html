@@ -11,18 +11,18 @@
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl " i18n="signIn">
 <!--          {{'signInUP.signin' | translate}}-->
-          Create an account
+          Connect to your account
         </h1>
 
         <form class="space-y-4 md:space-y-6">
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.eamil'|translate }}</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 " i18n="login.email">Your Email</label>
             <input type="email" name="email" id="email"
                    class="block w-full px-4 py-2 rounded-md shadow-sm {{getStatusFor('email')?'border border-red-500':''}}"
-                   placeholder="{{ 'placeholder.email' | translate }}" required="" formControlName="email">
+                   i18n-placeholder="login.email.placeholder" placeholder="enter your email" required="" formControlName="email">
           </div>
           <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.password' | translate }}</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 " i18n="login.pwd">Your Password</label>
             <input type="password" name="password" id="password" placeholder="••••••••"
                    class="block w-full px-4 py-2 rounded-md shadow-sm {{getStatusFor('password')?'border border-red-500':''}}"
                    required="" formControlName="password">

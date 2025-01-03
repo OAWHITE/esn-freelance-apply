@@ -53,15 +53,19 @@
           <nz-dropdown-menu #languageMenu="nzDropdownMenu">
             <ul>
               <li>
-                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('en')">
+                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/">
                   <img src="https://flagcdn.com/w40/us.png" alt="English" class="w-6 h-4 mr-2" />
-                  {{'layout.en'|translate}}
+                  en
                 </button>
               </li>
               <li>
-                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" (click)="switchLanguage('fr')">
-                  <img src="https://flagcdn.com/w40/fr.png" alt="Français" class="w-6 h-4 mr-2" />
-                  {{'layout.fr'|translate}}
+                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/fr">
+                  <img src="https://flagcdn.com/w40/fr.png" alt="Français" class="w-6 h-4 mr-2" />fr
+                </button>
+              </li>
+              <li>
+                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/es">
+                  <img src="https://flagcdn.com/w40/es.png" alt="Spanish" class="w-6 h-4 mr-2" />es
                 </button>
               </li>
             </ul>

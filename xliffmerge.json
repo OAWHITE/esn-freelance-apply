@@ -1,0 +1,6 @@
+{
+  "srcDir": "src/locale",
+  "genDir": "src/locale",
+  "i18nFile": "messages.xlf",
+  "languages": ["fr", "en"]
+}

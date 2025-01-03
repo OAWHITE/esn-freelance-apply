@@ -1,5 +1,6 @@
 import {app as serverEn} from './server/en/server.mjs';
 import {app as serverFr} from './server/fr/server.mjs';
+import {app as serverEs} from './server/es/server.mjs';
 import express from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
@@ -25,6 +26,7 @@ function run() {
 
   server.use('/en', serverEn());
   server.use('/fr', serverFr());
+  server.use('/es', serverEs());
 
 
 

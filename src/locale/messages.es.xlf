@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file datatype="plaintext" original="ng2.template" source-language="en-US" target-language="fr-FR">
+  <file datatype="plaintext" original="ng2.template" source-language="en-US" target-language="es-ES">
     <body>
       <trans-unit id="3378375497303438863" datatype="html">
         <source> Connect to your account </source>
-        <target>connectez-vous à votre compte</target>
+        <target>Conéctate a tu cuenta</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
           <context context-type="linenumber">14,15</context>
@@ -13,7 +13,7 @@
       </trans-unit>
       <trans-unit id="204562474612147063" datatype="html">
         <source>Your Email</source>
-        <target>Votre e-mail</target>
+        <target>Tu correo electrónico</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
           <context context-type="linenumber">19,20</context>
@@ -22,7 +22,7 @@
       </trans-unit>
       <trans-unit id="1772182132908313173" datatype="html">
         <source>enter your email</source>
-        <target>Entrer votre Email</target>
+        <target>Introduce tu correo electrónico</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
           <context context-type="linenumber">22</context>
@@ -31,7 +31,7 @@
       </trans-unit>
       <trans-unit id="2502279370614589004" datatype="html">
         <source>Your Password</source>
-        <target>Votre mot de passe</target>
+        <target>Tu contraseña</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
           <context context-type="linenumber">25,26</context>
