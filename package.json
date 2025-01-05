@@ -7,6 +7,8 @@
     "build": "ng build && node copy-proxy-server.js",
     "build-stg": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build-prod": "ng build  --configuration production --verbose ",
+    "prod": "node --max_old_space_size=64384  ./node_modules/@angular/cli/bin/ng build --prod  --output-hashing=none",
     "test": "ng test",
     "serve:ssr:project": "node dist/project/server/server.mjs",
     "ssr": "node dist/project/proxy-server.mjs"

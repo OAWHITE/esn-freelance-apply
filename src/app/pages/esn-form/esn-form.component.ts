@@ -78,10 +78,11 @@ export class EsnFormComponent implements OnInit {
         next: (data) => {
             this.esnService.uploadImage(data.id,this.imageFile as File).subscribe({
               next:()=>{
-                this.translateService.get("notifications").subscribe((data:any ) => {
-                  this.nzNotif.success(data.informationNotif, data.tesuccesAddESN);
 
-                })
+                this.nzNotif.success($localize`:@@esn.form.info:Information`, $localize`:@@esn.form.addEsn:Esn Applied Successffully`);
+
+
+
                 this.router.navigate(["/"]);
               },error:(err)=>{
                 console.log("an error occurred while uploading image ", err);
@@ -98,10 +99,10 @@ export class EsnFormComponent implements OnInit {
         this.showImageError = true;
       }
       console.log(this.getAllErrors(this.formEsn));
-      this.translateService.get("notifications").subscribe((data:any ) => {
-        this.nzNotif.error(data.errorNotif, data.erroraddEsn);
 
-      })
+        this.nzNotif.success($localize`:@@esn.form.error:Error`, $localize`:@@esn.form.adderror:an error occurred while adding esn, be sure that all fields is filled correctly ? please try again`);
+
+
     }
   }
 

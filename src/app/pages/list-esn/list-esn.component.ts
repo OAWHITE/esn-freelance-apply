@@ -72,28 +72,29 @@ export class ListEsnComponent implements OnInit {
   }
 
   deleteEsn(id: number) {
-    this.translateService.get("notifications").subscribe((data:any ) => {
+
       this.modalService.confirm({
-        nzTitle: data.confirmDeleteEsn,
-        nzContent: `<b style="color: red;">${data.deleteEsnconfirme}</b>`,
-        nzOkText: data.confirmDelete,
+        nzTitle: $localize`:@@esnList.confirmedelete:Are you sure delete this esn?`,
+        nzContent: `<b style="color: red;">${$localize`:@@esnList.confirmedelete:you are about to delete a Esn?`}</b>`,
+        nzOkText:$localize`:@@esnList.confirmedelete.yes:Yes` ,
         nzOkType: 'primary',
         nzOkDanger: true,
         nzOnOk: () => {
           this.ensservice.ensDelete(id).subscribe({
             next: () => {
               this.loadEns();
-              this.nzNotif.success(data.suppressionNotif, data.esnDelete);
+
+              this.nzNotif.success($localize`:@@esnList.suppressionNotif:Suppression?`, $localize`:@@esnList.DeleteSussces:Esn deleted successfully`);
             },
             error: (err) => {
               console.log(err);
             }
           });
         },
-        nzCancelText: data.no,
+        nzCancelText: $localize`:@@esnList.confirmedelete.no:No`,
       });
-    })
-  }
+    }
+
 
   LoadImages(esnObject: EnsResponse, file: Blob | undefined) {
     const reader = new FileReader();

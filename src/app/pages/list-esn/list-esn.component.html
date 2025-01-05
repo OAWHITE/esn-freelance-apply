@@ -1,11 +1,12 @@
 <div class="p-10">
   <div class="flex justify-between">
-    <h1 class="text-2xl text-cyan-600 font-bold">List Ens</h1>
+    <h1 class="text-2xl text-cyan-600 font-bold" i18n="listTitleEsn">List Ens</h1>
     <a
       class="bg-cyan-500 font-bold text-white p-3 rounded-md hover:bg-cyan-600 hover:text-white transition-all"
       routerLink="/esn"
+      i18n="listButtonAddNewEsn"
     >
-      {{ 'list.addEsn' | translate }}
+      Add Esn
     </a>
   </div>
   <div class="mt-5">
@@ -15,13 +16,13 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>{{ 'list.nameEsn' | translate }}</th>
-            <th>{{ 'list.nameContact' | translate }}</th>
-            <th>{{ 'list.titled' | translate }}</th>
-            <th>{{ 'list.email' | translate }}</th>
-            <th>{{ 'list.phone' | translate }}</th>
-            <th>Image</th>
-            <th>Action</th>
+            <th i18n="listNameEsn">Name Esn</th>
+            <th i18n="listNameContact">Name Contact</th>
+            <th i18n="listNameJob">Job</th>
+            <th i18n="listNameEmail">Email</th>
+            <th i18n="listNamePhone">Phone</th>
+            <th i18n="listNameImage">Image</th>
+            <th i18n="listNameAction">Action</th>
           </tr>
           </thead>
           <tbody>
@@ -56,14 +57,16 @@
                 <button
                   class="p-2 w-24 rounded-sm bg-red-500"
                   (click)="deleteEsn(esn.id)"
+                  i18n="listDeletteButtonEsn"
                 >
-                  {{ 'list.delete' | translate }}
+                  Delete
                 </button>
                 <button
                   class="p-2 w-24  rounded-sm bg-green-500"
                   (click)="openEditTab(esn, i)"
+                  i18n="listEditButtonEsn"
                 >
-                  {{ 'list.edit' | translate }}
+                  Edit
                 </button>
               </div>
             </td>

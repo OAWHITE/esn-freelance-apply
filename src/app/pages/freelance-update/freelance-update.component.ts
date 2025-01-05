@@ -9,13 +9,13 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FreelanceRequest} from "../../shared/model/FreelanceRequest";
 import {NzButtonModule} from "ng-zorro-antd/button";
-import {TranslatePipe, TranslateService} from "@ngx-translate/core";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-freelance-update',
   standalone: true,
-  imports: [NzFormModule, FormsModule, ReactiveFormsModule, NzOptionComponent, NzSelectComponent, NzInputModule, NzButtonModule, TranslatePipe],
+  imports: [NzFormModule, FormsModule, ReactiveFormsModule, NzOptionComponent, NzSelectComponent, NzInputModule, NzButtonModule, ],
   templateUrl: './freelance-update.component.html',
   styleUrl: './freelance-update.component.css'
 })
@@ -108,18 +108,18 @@ export class FreelanceUpdateComponent implements OnInit {
       this.freelanceService.updateFreelance(this.freelanceResponse?.id as number, this.resumeFile, this.imageFile as File, freelanceRequest).subscribe({
         next: (data) => {
           console.log("updated successffuly")
-          this.translateService.get("notifications").subscribe((data:any ) => {
-            this.nzNotif.success(data.informationNotif, data.teSuccesFreelance);
 
-          })
+            this.nzNotif.success($localize`:@@updateFreelance.service.success:Information`,$localize`:@@updateFreelance.service.freelanceUpdateMsg:Freelance Updated successfully. `);
+
+
           this.router.navigate(["/freelance/list"])
 
         }, error: err => {
           console.error("an error occured ", err)
-          this.translateService.get("notifications").subscribe((data:any ) => {
-            this.nzNotif.error(data.errorNotif, data.errorUpdateFreelance);
 
-          })
+            this.nzNotif.error($localize`:@@updateFreelance.service.error:Error`,$localize`:@@updateFreelance.service.errorUpdateMsg:an error occurred while update the freelance, be sure that all fields is filled correctly ? please try again`);
+
+
         }
       })
     } else {

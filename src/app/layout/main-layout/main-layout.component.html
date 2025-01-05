@@ -3,7 +3,7 @@
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="https://cdn.vectorstock.com/i/1000v/06/62/management-business-logo-template-concept-vector-31080662.jpg"
            class="h-8" alt="Flowbite Logo"/>
-      <span class="self-center text-2xl font-semibold whitespace-nowrap ">{{'layout.profileManager'|translate}}</span>
+      <span class="self-center text-2xl font-semibold whitespace-nowrap " i18n="layout.profile">Profile Manger</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
@@ -20,53 +20,53 @@
         <li>
           <a routerLink="/freelance/list"
              class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent  {{this.router.url==='/freelance/list'?'md:text-blue-700':'md:text-black'}} md:p-0"
-             aria-current="page">{{'layout.listFreenlance'|translate}}</a>
+             aria-current="page" i18n="layout.freelanceList">Freelancer List</a>
         </li>
         <li>
           <a routerLink="/esn/list"
-             class="block py-2 px-3 {{this.router.url==='/esn/list'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">{{'layout.listEsn'|translate}}</a>
+             class="block py-2 px-3 {{this.router.url==='/esn/list'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" i18n="layout.esnList">ESN list</a>
         </li>
         <li>
           <a href="#"
-             class="block py-2 px-3 {{this.router.url==='/contact'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">{{'layout.contact'|translate}}</a>
+             class="block py-2 px-3 {{this.router.url==='/contact'?'md:text-blue-700':'md:text-black'}} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 " i18n="layout.contact">Contact</a>
         </li>
         <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="profileMenu">
-          <a>
-            {{'layout.profile'|translate}}
+          <a i18n="layout.profileDrop">
+           Profile
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #profileMenu="nzDropdownMenu">
             <ul>
               <li>
-                <button (click)="logout()" class="block py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200">
-                  {{'layout.logout'|translate}}
+                <button (click)="logout()" class="block py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" i18n="layout.logout">
+                 Log out
                 </button>
               </li>
             </ul>
           </nz-dropdown-menu>
         </li>
         <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="languageMenu">
-          <a>
-            {{'layout.language'|translate}}
+          <a >
+            Language
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #languageMenu="nzDropdownMenu">
             <ul>
               <li>
-                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/">
+                <a class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" href="/">
                   <img src="https://flagcdn.com/w40/us.png" alt="English" class="w-6 h-4 mr-2" />
                   en
-                </button>
+                </a>
               </li>
               <li>
-                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/fr">
+                <a class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" href="/fr">
                   <img src="https://flagcdn.com/w40/fr.png" alt="Français" class="w-6 h-4 mr-2" />fr
-                </button>
+                </a>
               </li>
               <li>
-                <button class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" routerLink="/es">
+                <a class="flex items-center py-2 bg-gray-100 px-3 w-full text-left hover:bg-gray-200" href="/es">
                   <img src="https://flagcdn.com/w40/es.png" alt="Spanish" class="w-6 h-4 mr-2" />es
-                </button>
+                </a>
               </li>
             </ul>
           </nz-dropdown-menu>

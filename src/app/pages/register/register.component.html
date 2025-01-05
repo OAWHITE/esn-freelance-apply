@@ -9,57 +9,56 @@
     <div class="w-full bg-white rounded-lg shadow drop-shadow-xl dark:border md:mt-0 sm:max-w-md xl:p-0 transition-all"
          [formGroup]="this.signupForm">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-          {{ 'signInUP.createAccount' | translate }}
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl " i18n="signupCreateAcc">
+          Create an account
         </h1>
         <form class="space-y-4 md:space-y-6">
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.firstName' | translate }}</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 " i18n="signupFirstName">First Name</label>
             <input type="text"
                    class="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  {{this.errorObject.at(0)?.value ?'border border-red-500':''}}"
-                   placeholder="{{ 'placeholder.first_name' | translate }}" required="" formControlName="firstname">
+                   i18n-placeholder="signup.firstName.placeholder" placeholder="enter your first name" required="" formControlName="firstname">
             @if (this.errorObject.at(0)?.value) {
-              <span class="text-red-500  text-xs  fadeInTop">this field is required</span>
+              <span class="text-red-500  text-xs  fadeInTop" i18n="signupErrorFistName">this field is required</span>
             }
           </div>
 
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.lastName' | translate }}</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 " i18n="signupLastName">Last Name</label>
             <input type="text"
                    class="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  {{this.errorObject.at(1)?.value?'border border-red-500':''}}"
-                   placeholder="{{ 'placeholder.last_name' | translate }}" required="" formControlName="lastname">
+                   i18n-placeholder="signup.lastName.placeholder" placeholder="enter your last name" required="" formControlName="lastname">
             @if (this.errorObject.at(1)?.value) {
-              <span class="text-red-500  text-xs  fadeInTop">this field is required</span>
+              <span class="text-red-500  text-xs  fadeInTop" i18n="signupErrorLastName">this field is required</span>
             }
           </div>
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 " i18n="signupEmail">Email</label>
             <input type="email"
                    class="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  {{this.errorObject.at(2)?.value?'border border-red-500':''}}"
-                   placeholder="{{ 'placeholder.email' | translate }}" required="" formControlName="email">
+                   i18n-placeholder="signup.email.placeholder" placeholder="enter your email" required="" formControlName="email">
             @if (this.errorObject.at(2)?.value) {
               <span
-                class="text-red-500  text-xs  fadeInTop">this field is required and must respect the email pattern</span>
+                class="text-red-500  text-xs  fadeInTop" i18n="signupErrorEmail">this field is required and must respect the email pattern</span>
             }
           </div>
 
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.password' | translate }}</label>
-            <input type="text"
+            <label class="block mb-2 text-sm font-medium text-gray-900 " i18n="signupPassword">Password</label>
+            <input type="password"
                    class="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  {{this.errorObject.at(3)?.value?'border border-red-500':''}}"
                    placeholder="Password" required="" formControlName="password"
                    (keydown)="controlInputKeyPress($event)">
-            <span class="{{this.errorObject.at(3)?.value?'text-red-500 fadeInTop':'text-gray-400'}}  text-xs ">please to respect the patter  (A-Z a-z 0-9 . {{ '@' }}
-              ) </span>
+            <span class="{{this.errorObject.at(3)?.value?'text-red-500 fadeInTop':'text-gray-400'}}  text-xs " i18n="signupErrorPassword">please to respect the patter (A-Z a-z 0-9 . {{ '@' }})</span>
           </div>
 
 
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 ">{{ 'signInUP.confirmPassword'|translate }}</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 " i18n="signupConfimePassword">Confirme Password</label>
             <input type="password" placeholder="Password"
                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{this.errorObject.at(4)?.value?'border border-red-500':''}}"
                    required="" formControlName="confirmPassword" (keydown)="controlInputKeyPress($event)">
-            <span class="{{this.errorObject.at(4)?.value?'text-red-500 fadeInTop':'text-gray-400'}} text-xs">please to respect the patter  (A-Z a-z 0-9 . {{ '@' }}
+            <span class="{{this.errorObject.at(4)?.value?'text-red-500 fadeInTop':'text-gray-400'}} text-xs" i18n="signupErrorConfirmePssword">please to respect the patter  (A-Z a-z 0-9 . {{ '@' }}
               ) </span>
             <!--            @if (passwordsMatchError) {-->
             <!--              <p>error the password doesn't match</p>-->
@@ -70,8 +69,9 @@
           <button type="submit"
                   class="w-full  bg-sky-900 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                   (click)="signup()"
+                  i18n="signupSignUp"
           >
-            {{'signInUP.signUp' | translate}}
+            Sign Up
           </button>
 
         </form>

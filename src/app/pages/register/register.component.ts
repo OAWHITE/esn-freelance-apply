@@ -95,22 +95,18 @@ export class RegisterComponent implements OnInit {
       };
       this.registerService.createUser(userRequest).subscribe({
         next: () => {
-          this.translateService.get("notifications").subscribe((data:any ) => {
-            this.nzNotif.success(data.informationNotif, data.signUpSucces);
+          this.nzNotif.success($localize`:@@usignUp.service.success:Information`,$localize`:@@signUp.service.signUpMsg:You sign up Successffully" `);
 
-          })
           this.router.navigate(["/"]);
         }, error: (err) => {
-          this.translateService.get("notifications").subscribe((data:any ) => {
-            this.nzNotif.error(data.errorNotif, data.errorSignUp);
+          this.nzNotif.error($localize`:@@signUp.service.error:Error`,$localize`:@@signUP.service.errorSignUpsg:an error occurred while register, be sure that all fields is filled correctly ? please try again`);
 
-          })        }
+
+        }
       })
     } else {
-      this.translateService.get("notifications").subscribe((data:any ) => {
-        this.nzNotif.warning(data.warningNotif, data.warningFields);
+      this.nzNotif.warning($localize`:@@signUp.service.warning:warning`,$localize`:@@signUp.service.warningSignupMsg:All fields are required !`);
 
-      })
       this.getAllError()
     }
   }

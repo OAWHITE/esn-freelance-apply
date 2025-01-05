@@ -3,9 +3,8 @@
     <h1 class="text-2xl text-cyan-600 font-bold">List Freelance</h1>
     <a
       class="bg-cyan-500 font-bold text-white p-3 rounded-md hover:bg-cyan-600 hover:text-white transition-all"
-      routerLink="/freelance"
-    >
-      {{ 'list.addFreelance' | translate }}
+      routerLink="/freelance" i18n="listfreelance.addfreelance">
+      Add New Freelance
     </a>
   </div>
 
@@ -17,13 +16,13 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>{{ 'list.titled' | translate }}</th>
-            <th>{{ 'list.competences' | translate }}</th>
-            <th>{{ 'list.email' | translate }}</th>
-            <th>{{ 'list.phone' | translate }}</th>
-            <th>{{ 'list.image' | translate }}</th>
-            <th>{{ 'list.action' | translate }}</th>
+            <th i18n="listfreelance.name">Name</th>
+            <th i18n="listfreelance.titled">Titled</th>
+            <th i18n="listfreelance.skills">Skills</th>
+            <th i18n="listfreelance.email">Email</th>
+            <th i18n="listfreelance.phone">Phone</th>
+            <th i18n="listfreelance.image">Image</th>
+            <th i18n="listfreelance.action">Action</th>
           </tr>
           </thead>
           <tbody>
@@ -47,8 +46,8 @@
               }            </td>
             <td>
               <div class="flex gap-2">
-                <button class="p-2 w-24 rounded-sm bg-red-500" (click)="deleteFreelance(freelance.id)">{{ 'list.delete' | translate }}</button>
-                <button class="p-2 w-24 rounded-sm bg-green-500" (click)="openEditTab(freelance, i)">{{ 'list.edit' | translate }}</button>
+                <button class="p-2 w-24 rounded-sm bg-red-500" (click)="deleteFreelance(freelance.id)" i18n="listfreelance.delete">Delete</button>
+                <button class="p-2 w-24 rounded-sm bg-green-500" (click)="openEditTab(freelance, i)" i18n="listfreelance.edit">Edit</button>
               </div>
             </td>
           </tr>

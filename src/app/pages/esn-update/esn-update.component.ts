@@ -97,27 +97,24 @@ export class EsnUpdateComponent implements OnInit {
         this.esnService.updateEsn(esnId, this.imageFile as File, esnRequest).subscribe({
           next: (data) => {
             this.router.navigate(["/esn/list"]);
-            this.translateService.get("notifications").subscribe((data:any ) => {
-              this.nzNotif.success(data.informationNotif, data.updateSuccesEsn);
 
-            })
+              this.nzNotif.success($localize`:@@esnUpdate.form.info:Information`, $localize`:@@esnUpdate.form.UpdateEsn:Esn updated successfully`);
+
+
 
             // this.closeTab();
           },
           error: (err) => {
             console.error("An error occurred ", err);
-            this.translateService.get("notifications").subscribe((data:any ) => {
-              this.nzNotif.error(data.errorNotif, data.erroraddEsn);
 
-            })
+              this.nzNotif.success($localize`:@@esnupdate.form.error:An error occurred`, $localize`:@@esnupdate.form.error:an error occurred while adding esn, be sure that all fields is filled correctly ? please try again`);
+
+
           }
         });
       } else {
         // Handle case where esnResponse.id is undefined
-        this.translateService.get("notifications").subscribe((data:any ) => {
-          this.nzNotif.error(data.errorNotif, data.invalidEsnId);
-
-        })
+        this.nzNotif.success($localize`:@@esnupdate.form.error:An error occurred`, $localize`:@@esnupdate.form.error:Invalid ESN id`);
       }
     }
   }

@@ -98,6 +98,7 @@
     "confirmDelete": "Yes",
     "addSuccesFreelance": "Freelance Applied Successffully",
     "updateSuccesFreelance": "Freelance updated successfully",
+    "updateSuccesFreelance": "Freelance updated successfully",
     "errorUpdateFreelance": "An error occurred while updating the freelance data",
     "updateSuccesEsn": "Esn updated successfully",
     "loginsecces": "You logged in Successffully",

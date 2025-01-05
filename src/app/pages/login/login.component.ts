@@ -70,11 +70,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/freelance/list'])
         },
         error: () => {
-          this.translateService.get("notifications").subscribe((data:any ) => {
-            this.nzNotif.error(data.errorNotif, data.errorLogin);
-
-          })
-
+            this.nzNotif.error($localize`:@@login.service.error:Error`,$localize`:@@login.service.errorLoginMsg:an error occurred while login, be sure that all fields is filled correctly ? please try again`);
         }
       })
 

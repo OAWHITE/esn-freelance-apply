@@ -66,10 +66,8 @@ export class FreelanceFormComponent implements OnInit {
         next:(data)=>{
           this.freelanceService.uploadImage(data.id , this.imageFile as File).subscribe({
               next:()=>{
-                this.translateService.get("notifications").subscribe((data:any ) => {
-                  this.nzNotif.success(data.informationNotif, data.addSuccesFreelance);
+                  this.nzNotif.success($localize`:@@addFreelance.service.success:Information`,$localize`:@@addFreelance.service.freelanceAddMsg:Freelance Applied Successffully`);
 
-                })
                 this.router.navigate(["/"]);
               },error:(err)=>{
               console.log("an error occurred while uploading image ", err);
@@ -86,10 +84,11 @@ export class FreelanceFormComponent implements OnInit {
         this.showImageError = true;
       }
       console.log(this.getAllErrors(this.freelanceForm));
-      this.translateService.get("notifications").subscribe((data:any ) => {
-        this.nzNotif.error(data.errorNotif, data.errorAddignFreelance);
 
-      }) }
+          this.nzNotif.error($localize`:@@addFreelance.service.error:Error`,$localize`:@@addFreelance.service.errorAddMsg:an error occurred while adding freelance, be sure that all fields is filled correctly ? please try again`);
+
+
+      }
   }
 
   getAllErrors(formGroup: FormGroup): { [key: string]: any } {
